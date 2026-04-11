@@ -70,7 +70,7 @@ if (isset($_POST['update_bank_details']) && isset($_SESSION['usr_id']) && $_SESS
             <?php include("include/nav.php"); ?>
             
             <div class="container" >  
-            <div class="card tb-10">
+            <div class="premium-auth-card">
 
                 <div class="text-center tb-10">
                     <h3>Change Password</h3>
@@ -90,7 +90,7 @@ if (isset($_POST['update_bank_details']) && isset($_SESSION['usr_id']) && $_SESS
                     <input type="text" class="form-control" name="confirm_new_password" minlength="3" maxlength="50" placeholder="Confirm Password" id="confirm_new_password" autocomplete="off" required>
                   </div>
                   
-                  <input type="hidden" name="api_acess_token" value="<?php echo $_SESSION['api_acess_token'];?>">
+                  <input type="hidden" name="api_access_token" value="<?php echo $_SESSION['api_access_token'] ?? '';?>">
                   <button type="submit" name="change_password" class="btn btn-theme btn-login">Submit</button>
 
                 </form> 

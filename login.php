@@ -114,7 +114,7 @@ if(isset($_POST['login'])){
             
             
             <div class="container" >  
-            <div class="card tb-10">
+            <div class="premium-auth-card">
                 
                 <center><img src="assets/img/logo-fill.png" style="min-height: 100px;height: 100px;margin: auto;margin-bottom: auto;border-radius: 10px;margin-bottom: 10px;" ></center>
                 
@@ -132,12 +132,12 @@ if(isset($_POST['login'])){
                     <input type="password" class="form-control" name="password" placeholder="Enter password" id="pwd" autocomplete="off" required>
                   </div>
                   <button type="submit" class="btn btn-theme btn-login" name="login">Submit</button>
-                  <input type="hidden" name="return_url" value="<?php echo htmlspecialchars($_GET['return_url']);?>">
+                  <input type="hidden" name="return_url" value="<?php echo isset($_GET['return_url']) ? htmlspecialchars($_GET['return_url']) : ''; ?>">
                 </form> 
                 
                 <div class="text-center tbmar-20">
                     <p>Dont have an account?</p>
-                    <a href="register.php" class="btn btn-outline btn-login">Create Account Now</a>
+                    <a href="register.php" class="btn btn-login">Create Account Now</a>
                 </div>
 
             </div>

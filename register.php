@@ -161,7 +161,7 @@ if (isset($_POST['signup'])) {
             
             
             <div class="container" >  
-            <div class="card tb-10">
+            <div class="premium-auth-card">
                 
                 <div class="text-center tb-10">
                     <h3>Sign Up</h3>
@@ -195,7 +195,7 @@ if (isset($_POST['signup'])) {
                 
                 <div class="text-center tbmar-20">
                     <p>Already have an account?</p>
-                    <a href="login.php" class="btn btn-outline btn-login">Login Here</a>
+                    <a href="login.php" class="btn btn-login">Login Here</a>
                 </div>
 
             </div>

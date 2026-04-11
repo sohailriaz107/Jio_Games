@@ -88,49 +88,72 @@ if (empty($lat) || empty($lon)) {
 			
 			
 			
-            <div class="container text-center" >  
-            <div class="tb-10">
-                  <div class="row">
-                    <div class="col-3" style="padding-left:5px;padding-right:5px;"> 
-                      <a href="add-fund.php" class="home-sl2-box"> <i class="fa fa-money"></i> <br> <span>Add Fund</span></a>
+            <!-- Hero Image Slider -->
+            <div class="hero-slider-wrapper">
+                <div class="hero-slider" id="heroSlider">
+                    <div class="hero-slide active">
+                        <img src="assets/img/banner-1.jpg" alt="Banner 1">
                     </div>
-                    <div class="col-3" style="padding-left:5px;padding-right:5px;"> 
-                      <a href="withdraw.php" class="home-sl2-box"> <i class="fa fa-credit-card"></i> <br> <span>Withdraw</span></a>
+                    <div class="hero-slide">
+                        <img src="assets/img/banner-2.jpg" alt="Banner 2">
                     </div>
-                    
-                    <div class="col-3" style="padding-left:5px;padding-right:5px;">
-                      <a href="support.php" class="home-sl2-box"><i class="fa fa-comments"></i> <br> <span>Help</span></a>
+                    <div class="hero-slide">
+                        <img src="assets/img/banner-3.jpg" alt="Banner 3">
                     </div>
-                    
-                    <div class="col-3" style="padding-left:5px;padding-right:5px;">
-                      <a href="https://jiogames.app/apk/JioGames_V102.apk" class="home-sl2-box"><i class="fa fa-download"></i> <br> <span>Download App</span></a>
-                    </div>
+                </div>
+                <!-- Prev / Next Buttons -->
+                <button class="slider-btn slider-prev" onclick="heroSliderPrev()">&#10094;</button>
+                <button class="slider-btn slider-next" onclick="heroSliderNext()">&#10095;</button>
+                <!-- Dots -->
+                <div class="slider-dots" id="sliderDots">
+                    <span class="dot active" onclick="heroSliderGoTo(0)"></span>
+                    <span class="dot" onclick="heroSliderGoTo(1)"></span>
+                    <span class="dot" onclick="heroSliderGoTo(2)"></span>
+                </div>
+            </div>
 
-                  </div>
+            <!-- Notice Marquee -->
+            <div class="notice-marquee">
+                <i class="fa fa-bullhorn text-primary" style="color: var(--primary-light);"></i>
+                <marquee scrollamount="5"><?php echo get_SettingValue('app_notice');?></marquee>
             </div>
+
+            <!-- Quick Action Cards -->
+            <div class="container quick-action-container">
+                <a href="add-fund.php" class="premium-action-card">
+                    <div class="card-header-top">
+                        <h4>Add Funds</h4>
+                    </div>
+                    <div class="card-body-bottom">
+                        <span>Click Here</span>
+                    </div>
+                </a>
+
+                <a href="withdraw.php" class="premium-action-card">
+                    <div class="card-header-top">
+                        <h4>Withdraw Amount</h4>
+                    </div>
+                    <div class="card-body-bottom">
+                        <span>Click Here</span>
+                    </div>
+                </a>
             </div>
-            <div id="scroll-container" class="noticebr"><div id="scroll-text" style="white-space: nowrap;"><?php echo get_SettingValue('app_notice');?></div></div>
             
-            <div class="container text-center" > 
-            <div class="tb-10">
-                
-                <div class="row game-list-inner" style="background: #1f1f1f;color: #ffe301;">
-                                <div class="col-3">
-                                  <i class="fa fa-star" style="font-size: 25px;padding-top: 13px;"></i>
-                                </div>
-                                <div class="col-6"> 
-                                  <div class="game-list-box">
-                                      <span class="gameName"> MUMBAI STARLINE </span>
-                                      
-                                      <span class="gameResult" style="color: white;font-size: 12px;padding-top: 10px;">Play and Win Hourly</span>
-                                  </div>
-                                </div>
-                                <div class="col-3"> 
-                                 <a href="starline-play.php" class="game-play"> <i class="fa fa-play-circle" style="color: white;"></i><br>Play Starline</a>
-                                </div>
-        
-                        </div> 
-                        <h3 class="gdash3" style="font-size: 16px;">WORLD KA SABSE TRUSTED MATKA PLAY</h3>
+            <div class="container py-3" > 
+                <!-- Starline Banner Card -->
+                <div class="premium-game-card starline-card mb-3" style="display: flex;">
+                    <div class="game-info" style="text-align: left;flex: 1;">
+                        <h4 class="game-title" style="color: var(--primary-light);"><i class="fa fa-star" style="color:#f39c12;"></i> MUMBAI STARLINE</h4>
+                        <p class="game-subtitle">Play and Win Hourly</p>
+                    </div>
+                    <a href="starline-play.php" class="btn-play-rounded"> 
+                        <i class="fa fa-play-circle"></i> Play
+                    </a>
+                </div>
+
+                <div class="section-heading px-2 mb-2" style="text-align: left; margin: 20px 0 10px 0;">
+                    <h3 style="font-size: 13px; font-weight: 700; color: #6c757d; text-transform: uppercase;">Trusted Matka Play</h3>
+                </div>
             
                 <?php
                 $games_list_qry =  "SELECT * FROM `parent_games` WHERE status=1 order by order_of_display";
@@ -188,29 +211,31 @@ if (empty($lat) || empty($lon)) {
 
                     ?>    
                         
-                        <div class="row game-list-inner">
-                                <div class="col-3">
-                                  <a href="#" class="game-time" data-toggle="modal" data-target="#gameTimeModal<?php echo $game_id;?>"><i class="fa fa-clock-o"></i> <br>Game Time</a>
-                                </div>
-                                <div class="col-6"> 
-                                  <div class="game-list-box">
-                                      <span class="gameName"> <?php echo $game_name;?> </span>
-                                      <?php if($bidding_status){ ?>
-                                      <p class="gameon"><?php echo $msg;?></p>
-                                      <?php }else{?>
-                                      <p class="gameoff"><?php echo $msg;?></p>
-                                      <?php } ?>
-                                      <span class="gameResult"><?php echo $result;?></span>
-                                  </div>
-                                </div>
-                                <div class="col-3"> 
+                        <div class="premium-game-card mb-3">
+                            <div class="card-header-top">
+                                <span class="game-title"><?php echo $game_name;?></span>
                                 <?php if($bidding_status){ ?>
-                                  <a href="game-dashboard.php?game=<?php echo $game_title;?>&gid=<?php echo $game_id;?>" class="game-play"> <i class="fa fa-play-circle"></i><br>Play Game</a>
+                                   <span class="status-badge status-open"><i class="fa fa-circle"></i> <?php echo $msg;?></span>
                                 <?php }else{?>
-                                 <a href="#" class="game-play gray"> <i class="fa fa-play-circle"></i><br>Play Game</a>
+                                   <span class="status-badge status-closed"><i class="fa fa-circle"></i> <?php echo $msg;?></span>
                                 <?php } ?>
+                            </div>
+                            
+                            <div class="card-body-mid">
+                                <div class="result-display">
+                                    <span class="result-numbers"><?php echo $result;?></span>
                                 </div>
-        
+                            </div>
+                            
+                            <div class="card-footer-bot">
+                                <a href="#" class="action-btn time-btn" data-toggle="modal" data-target="#gameTimeModal<?php echo $game_id;?>"><i class="fa fa-clock-o"></i> Timings</a>
+                                
+                                <?php if($bidding_status){ ?>
+                                    <a href="game-dashboard.php?game=<?php echo $game_title;?>&gid=<?php echo $game_id;?>" class="action-btn play-btn active"><i class="fa fa-play-circle"></i> Play Game</a>
+                                <?php }else{?>
+                                    <a href="#" class="action-btn play-btn closed"><i class="fa fa-lock"></i> Closed</a>
+                                <?php } ?>
+                            </div>
                         </div> 
                         <div class="modal" id="gameTimeModal<?php echo $game_id;?>">
                           <div class="modal-dialog">
@@ -269,38 +294,49 @@ if (empty($lat) || empty($lon)) {
         </div>
     </div>
 	
+	<style>
+	#noticeboard.modal {
+	  padding: 0 !important;
+	}
+	#noticeboard .modal-dialog {
+	  margin: 0;
+	  top: 50%;
+	  left: 50%;
+	  transform: translate(-50%, -50%) !important;
+	  position: absolute;
+	  width: 90%;
+	  max-width: 500px;
+	}
+	</style>
+
 	<?php if(1){?>
 	<div class="modal" id="noticeboard">
-                          <div class="modal-dialog">
-                            <div class="modal-content">
-                        
-                              <!-- Modal Header -->
-                              <div class="modal-header">
-                                <p class="modal-title">GET ANDROID APPLICATION</p>
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                              </div>
-                        
-                              <!-- Modal body -->
-                              <div class="modal-body">
-							  <div style="display: flex; align-items: center;">
-									<img src="assets/img/app-home.webp" style="width: 150px; height: auto; margin-right: 10px;">
-									<div>
-										<p style="font-size: 18px; font-weight: bold; margin-bottom: 5px;">DOWNLOAD OUR APP</p>
-										
-										<p style="line-height: 22px;
-    font-size: 16px;">Enjoy advanced features and options by downloading our Android app. access all the exciting features anytime, anywhere!</p>
-										<a href="https://jiogames.app/apk/JioGames_V102.apk" style="background-color: #b73800; color: white; padding: 10px 15px; border: none; border-radius: 5px; cursor: pointer;text-decoration:none;"> <i class="fa fa-download"></i> Download Now</a>
-									</div>
-								</div>
-
-                        
-                              <!--
-                              <div class="modal-footer">
-                                <button type="button" class="btn btn-theme" data-dismiss="modal">Close</button>
-                              </div> -->
-                        
-                            </div>
-                          </div>
+      <div class="modal-dialog">
+        <div class="modal-content" style="border-radius: 20px; border: none; overflow: hidden; box-shadow: 0 15px 50px rgba(0,0,0,0.2);">
+    
+          <!-- Modal Header -->
+          <div class="modal-header" style="background: linear-gradient(45deg, #0d6efd, #0044bb); color: white; border: none; padding: 15px 20px;">
+            <p class="modal-title" style="font-weight: 800; font-size: 16px; margin: 0; text-transform: uppercase; letter-spacing: 1px;">GET ANDROID APPLICATION</p>
+            <button type="button" class="close" data-dismiss="modal" style="color: white; opacity: 1; text-shadow: none;">&times;</button>
+          </div>
+    
+          <!-- Modal body -->
+          <div class="modal-body" style="padding: 25px;">
+            <div style="display: flex; align-items: center; gap: 20px;">
+                <img src="assets/img/app-home.webp" style="width: 140px; height: auto; border-radius: 15px; box-shadow: 0 8px 20px rgba(0,0,0,0.15);">
+                <div>
+                    <p style="font-size: 20px; font-weight: 900; color: #b73800; margin-bottom: 8px;">DOWNLOAD OUR APP</p>
+                    <p style="line-height: 1.5; font-size: 14px; color: #4b5563; margin-bottom: 20px;">Enjoy advanced features and options by downloading our Android app. Access all the exciting features anytime, anywhere!</p>
+                    <a href="https://jiogames.app/apk/JioGames_V102.apk" 
+                       style="display: inline-block; background: linear-gradient(to right, #b73800, #ff4c00); color: white; padding: 12px 24px; border: none; border-radius: 10px; cursor: pointer; text-decoration: none; font-weight: 700; box-shadow: 0 4px 15px rgba(183, 56, 0, 0.3);">
+                        <i class="fa fa-download"></i> Download Now
+                    </a>
+                </div>
+            </div>
+          </div>
+    
+        </div>
+      </div>
     </div>
 	</div>
 	<?php } ?>
@@ -370,10 +406,44 @@ $telegram_on_home = $config['telegram_enabled'];
         // Set a cookie to indicate that the user has seen the popup
         $('#noticeboard').on('hidden.bs.modal', function () {
             var date = new Date();
-            date.setTime(date.getTime() + (3 * 60 * 60 * 1000)); // Set the cookie to expire in 6 hours
+            date.setTime(date.getTime() + (3 * 60 * 60 * 1000));
             document.cookie = 'popup_seen=true; expires=' + date.toUTCString() + '; path=/';
         });
     });
+</script>
+
+<script>
+    // Custom Hero Slider
+    var heroCurrentSlide = 0;
+    var heroSlides = document.querySelectorAll('.hero-slide');
+    var heroDots = document.querySelectorAll('.dot');
+    var heroTimer;
+
+    function heroSliderGoTo(n) {
+        heroSlides[heroCurrentSlide].classList.remove('active');
+        heroDots[heroCurrentSlide].classList.remove('active');
+        heroCurrentSlide = (n + heroSlides.length) % heroSlides.length;
+        heroSlides[heroCurrentSlide].classList.add('active');
+        heroDots[heroCurrentSlide].classList.add('active');
+    }
+
+    function heroSliderNext() {
+        heroSliderGoTo(heroCurrentSlide + 1);
+        resetHeroTimer();
+    }
+
+    function heroSliderPrev() {
+        heroSliderGoTo(heroCurrentSlide - 1);
+        resetHeroTimer();
+    }
+
+    function resetHeroTimer() {
+        clearInterval(heroTimer);
+        heroTimer = setInterval(function() { heroSliderGoTo(heroCurrentSlide + 1); }, 3000);
+    }
+
+    // Auto start
+    heroTimer = setInterval(function() { heroSliderGoTo(heroCurrentSlide + 1); }, 3000);
 </script>
 
 

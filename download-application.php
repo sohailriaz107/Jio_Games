@@ -37,7 +37,7 @@ session_start();
 									<div>
 										<p style="font-size: 18px; font-weight: bold; margin-bottom: 5px;">DOWNLOAD OUR APP</p>
 										<p>Enjoy advanced features and options by downloading our Android app. access all the exciting features anytime, anywhere!</p>
-										<a href="https://jiogames.app/apk/JioGames_V102.apk" style="background-color: #b73800; color: white; padding: 10px 15px; border: none; border-radius: 5px; cursor: pointer;text-decoration:none;"> <i class="fa fa-download"></i> Download Now</a>
+										<a href="https://jiogames.app/apk/JioGames_V102.apk" style="background-color: #0d6efd; color: white; padding: 10px 15px; border: none; border-radius: 5px; cursor: pointer;text-decoration:none;"> <i class="fa fa-download"></i> Download Now</a>
 									</div>
 								</div>
                     </div>

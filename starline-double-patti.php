@@ -115,296 +115,99 @@ if (isset($_POST['single_submit']) && isset($_SESSION['usr_id']) != "") {
                             $game_name = $row['name']; 
                     ?>
                 <form action="" method="POST" class="myform">
-                <div class="row bidoptions-list tb-10">
-                                <div class="col-6">
-                                  <a class="dateGameIDbox">
-                                      <p><?php echo date('d/m/Y');?></p>
-                                  </a>
-                                </div>
-                                
-                                <div class="col-6">
-                                    <a class="dateGameIDbox">
-                                      <p><?php echo $game_name;?></p>
-                                  </a>
-                                </div>
-                                
+                <!-- PREMIUM GAME HEADER INFO -->
+                <div class="premium-game-header mb-3 mt-2">
+                    <div class="header-stat">
+                        <i class="fa fa-calendar-o"></i> <?php echo date('d/M/Y');?>
+                    </div>
+                    <div class="header-stat primary">
+                        <i class="fa fa-gamepad"></i> <?php echo $game_name;?>
+                    </div>
                 </div>
 
-                
                 <?php if(time() < $startline_time){?>
                 <div class="tb-10"><hr class="devider"></div>
                 
-                <h3 class="subheading">Select Amount</h3>
-                <div class="row bidoptions-list tb-10">
-                                <div class="col-3">
-                                  <a class="bidamtbox" id="amount_5" data="5">
-                                      <p><i class="fa fa-inr" aria-hidden="true"></i> 5</p>
-                                  </a>
+                <h3 class="premium-subheading mb-3"><i class="fa fa-inr" style="color: var(--primary-light);"></i> Select Amount</h3>
+                
+                <!-- PREMIUM CHIP SELECTORS -->
+                <div class="premium-chip-group mb-4">
+                    <a class="bidamtbox premium-chip" id="amount_5" data="5">₹ 5</a>
+                    <a class="bidamtbox premium-chip" id="amount_10" data="10">₹ 10</a>
+                    <a class="bidamtbox premium-chip" id="amount_50" data="50">₹ 50</a>
+                    <a class="bidamtbox premium-chip" id="amount_100" data="100">₹ 100</a>
+                    <a class="bidamtbox premium-chip" id="amount_200" data="200">₹ 200</a>
+                    <a class="bidamtbox premium-chip" id="amount_500" data="500">₹ 500</a>
+                    <a class="bidamtbox premium-chip" id="amount_1000" data="1000">₹ 1K</a>
+                    <a class="bidamtbox premium-chip" id="amount_5000" data="5000">₹ 5K</a>
+                </div>
+                
+                <div class="tb-10"><hr class="devider"></div>
+                <h3 class="premium-subheading mb-3"><i class="fa fa-th-list" style="color: var(--primary-light);"></i> Select Double Panna Digits</h3>
+
+                <?php 
+                $double_patti_groups = array(
+                    '0' => array(118, 226, 244, 299, 334, 488, 550, 668, 677),
+                    '1' => array(100, 119, 155, 227, 335, 344, 399, 588, 669),
+                    '2' => array(110, 200, 228, 255, 336, 499, 660, 688, 778),
+                    '3' => array(166, 229, 300, 337, 355, 445, 599, 779, 788),
+                    '4' => array(112, 220, 266, 338, 400, 446, 455, 699, 770),
+                    '5' => array(113, 122, 177, 339, 366, 447, 500, 799, 889),
+                    '6' => array(114, 277, 330, 448, 466, 556, 600, 880, 899),
+                    '7' => array(115, 133, 188, 223, 377, 449, 557, 566, 700),
+                    '8' => array(116, 224, 233, 288, 440, 477, 558, 800, 990),
+                    '9' => array(117, 144, 199, 225, 388, 559, 577, 667, 900)
+                );
+
+                foreach($double_patti_groups as $ank => $digits){
+                ?>
+                    <div class="tb-10"><hr class="devider"></div>
+                    <h3 class="premium-subheading mb-3" style="color: var(--primary-light);">Panna of ank <?php echo $ank;?></h3>
+                    
+                    <div class="row" style="margin: 0 -5px;">
+                        <?php foreach($digits as $digit){ ?>
+                            <div class="col-3 mb-3" style="padding: 0 5px;">
+                                <div class="premium-panna-card">
+                                    <div class="digit-badge"><?php echo $digit;?></div>
+                                    <div class="input-wrapper">
+                                        <span class="currency-symbol">₹</span>
+                                        <input type="number" 
+                                               class="pointinputbox premium-input" 
+                                               id="double_patti<?php echo $digit;?>" 
+                                               name="double_patti<?php echo $digit;?>" 
+                                               value="" 
+                                               placeholder="0" 
+                                               readonly>
+                                    </div>
                                 </div>
-                                
-                                <div class="col-3">
-                                  <a class="bidamtbox" id="amount_10" data="10">
-                                      <p><i class="fa fa-inr" aria-hidden="true"></i> 10</p>
-                                  </a>
-                                </div>
-                                
-                                <div class="col-3">
-                                  <a class="bidamtbox" id="amount_50" data="50">
-                                      <p><i class="fa fa-inr" aria-hidden="true"></i> 50</p>
-                                  </a>
-                                </div>
-                                <div class="col-3">
-                                  <a class="bidamtbox" id="amount_100" data="100">
-                                      <p><i class="fa fa-inr" aria-hidden="true"></i> 100</p>
-                                  </a>
-                                </div>
-                </div>
-                
-                
-               
-                
-                <div class="row bidoptions-list tb-10">
-                                <div class="col-3">
-                                  <a class="bidamtbox" id="amount_200" data="200">
-                                      <p><i class="fa fa-inr" aria-hidden="true"></i> 200</p>
-                                  </a>
-                                </div>
-                                
-                                <div class="col-3">
-                                  <a class="bidamtbox" id="amount_500" data="500">
-                                      <p><i class="fa fa-inr" aria-hidden="true"></i> 500</p>
-                                  </a>
-                                </div>
-                                
-                                <div class="col-3">
-                                  <a class="bidamtbox" id="amount_1000" data="1000">
-                                      <p><i class="fa fa-inr" aria-hidden="true"></i> 1000</p>
-                                  </a>
-                                </div>
-                                <div class="col-3">
-                                  <a class="bidamtbox" id="amount_5000" data="5000">
-                                      <p><i class="fa fa-inr" aria-hidden="true"></i> 5000</p>
-                                  </a>
-                                </div>
-                </div>
-                
-                <div class="tb-10"><hr class="devider"></div>
-                <h3 class="subheading">Select Digits</h3>
-                <div class="tb-10"><hr class="devider"></div>
-                <h3 class="subheading">Panna of ank 0</h3>
-                <div class="row bidoptions-list tb-10">
-                    
-                    <?php 
-                    $double_patti_0 = array(118,226,244,299,334,488,550,668,677);
-                    
-                    foreach($double_patti_0 as $digit){?>
-                        
-                        <div class="col-3">
-                                    <div class="bidinputdiv">
-                                        <lable><?php echo $digit;?></lable>
-                                        <input type="text" value="" class="pointinputbox" id="double_patti<?php echo $digit;?>" name="double_patti<?php echo $digit;?>" readonly>
-                                    </div>
-                        </div>
-                                
-                    <?php } ?>
+                            </div>
+                        <?php } ?>
+                    </div>
+                <?php } ?>
 
-                </div>
-                <div class="tb-10"><hr class="devider"></div>
-                <h3 class="subheading">Panna of ank 1</h3>
-                <div class="row bidoptions-list tb-10">
-                    
-                    <?php 
-                    $double_patti_1 = array(100,119,155,227,335,344,399,588,669);
-                    
-                    foreach($double_patti_1 as $digit){?>
-                        
-                        <div class="col-3">
-                                    <div class="bidinputdiv">
-                                        <lable><?php echo $digit;?></lable>
-                                        <input type="text" value="" class="pointinputbox" id="double_patti<?php echo $digit;?>" name="double_patti<?php echo $digit;?>" readonly>
-                                    </div>
-                        </div>
-                                
-                    <?php } ?>
-
-                </div>
-                
-                <div class="tb-10"><hr class="devider"></div>
-                <h3 class="subheading">Panna of ank 2</h3>
-                <div class="row bidoptions-list tb-10">
-                    
-                    <?php 
-                    $double_patti_2 = array(110,200,228,255,336,499,660,688,778);
-                    
-                    foreach($double_patti_2 as $digit){?>
-                        
-                        <div class="col-3">
-                                    <div class="bidinputdiv">
-                                        <lable><?php echo $digit;?></lable>
-                                        <input type="text" value="" class="pointinputbox" id="double_patti<?php echo $digit;?>" name="double_patti<?php echo $digit;?>" readonly>
-                                    </div>
-                        </div>
-                                
-                    <?php } ?>
-
-                </div>
-                
-                <div class="tb-10"><hr class="devider"></div>
-                <h3 class="subheading">Panna of ank 3</h3>
-                <div class="row bidoptions-list tb-10">
-                    
-                    <?php 
-                    $double_patti_3 = array(166,229,300,337,355,445,599,779,788);
-                    
-                    foreach($double_patti_3 as $digit){?>
-                        
-                        <div class="col-3">
-                                    <div class="bidinputdiv">
-                                        <lable><?php echo $digit;?></lable>
-                                        <input type="text" value="" class="pointinputbox" id="double_patti<?php echo $digit;?>" name="double_patti<?php echo $digit;?>" readonly>
-                                    </div>
-                        </div>
-                                
-                    <?php } ?>
-
-                </div>
-                <div class="tb-10"><hr class="devider"></div>
-                <h3 class="subheading">Panna of ank 4</h3>
-                <div class="row bidoptions-list tb-10">
-                    
-                    <?php 
-                   $double_patti_4 = array(112,220,266,338,400,446,455,699,770);
-                    
-                    foreach($double_patti_4 as $digit){?>
-                        
-                        <div class="col-3">
-                                    <div class="bidinputdiv">
-                                        <lable><?php echo $digit;?></lable>
-                                        <input type="text" value="" class="pointinputbox" id="double_patti<?php echo $digit;?>" name="double_patti<?php echo $digit;?>" readonly>
-                                    </div>
-                        </div>
-                                
-                    <?php } ?>
-
-                </div>
-                <div class="tb-10"><hr class="devider"></div>
-                <h3 class="subheading">Panna of ank 5</h3>
-                <div class="row bidoptions-list tb-10">
-                    
-                    <?php 
-                    $double_patti_5 = array(113,122,177,339,366,447,500,799,889);
-                    
-                    foreach($double_patti_5 as $digit){?>
-                        
-                        <div class="col-3">
-                                    <div class="bidinputdiv">
-                                        <lable><?php echo $digit;?></lable>
-                                        <input type="text" value="" class="pointinputbox" id="double_patti<?php echo $digit;?>" name="double_patti<?php echo $digit;?>" readonly>
-                                    </div>
-                        </div>
-                                
-                    <?php } ?>
-
-                </div>
-                <div class="tb-10"><hr class="devider"></div>
-                <h3 class="subheading">Panna of ank 6</h3>
-                <div class="row bidoptions-list tb-10">
-                    
-                    <?php 
-                    $double_patti_6 = array(114,277,330,448,466,556,600,880,899);
-                    
-                    foreach($double_patti_6 as $digit){?>
-                        
-                        <div class="col-3">
-                                    <div class="bidinputdiv">
-                                        <lable><?php echo $digit;?></lable>
-                                        <input type="text" value="" class="pointinputbox" id="double_patti<?php echo $digit;?>" name="double_patti<?php echo $digit;?>" readonly>
-                                    </div>
-                        </div>
-                                
-                    <?php } ?>
-
-                </div>
-                
-                <div class="tb-10"><hr class="devider"></div>
-                <h3 class="subheading">Panna of ank 7</h3>
-                <div class="row bidoptions-list tb-10">
-                    
-                    <?php 
-                    $double_patti_7 = array(115,133,188,223,377,449,557,566,700);
-                    
-                    foreach($double_patti_7 as $digit){?>
-                        
-                        <div class="col-3">
-                                    <div class="bidinputdiv">
-                                        <lable><?php echo $digit;?></lable>
-                                        <input type="text" value="" class="pointinputbox" id="double_patti<?php echo $digit;?>" name="double_patti<?php echo $digit;?>" readonly>
-                                    </div>
-                        </div>
-                                
-                    <?php } ?>
-
-                </div>
-                
-                <div class="tb-10"><hr class="devider"></div>
-                <h3 class="subheading">Panna of ank 8</h3>
-                <div class="row bidoptions-list tb-10">
-                    
-                    <?php 
-                    $double_patti_8 = array(116,224,233,288,440,477,558,800,990);
-                    
-                    foreach($double_patti_8 as $digit){?>
-                        
-                        <div class="col-3">
-                                    <div class="bidinputdiv">
-                                        <lable><?php echo $digit;?></lable>
-                                        <input type="text" value="" class="pointinputbox" id="double_patti<?php echo $digit;?>" name="double_patti<?php echo $digit;?>" readonly>
-                                    </div>
-                        </div>
-                                
-                    <?php } ?>
-
-                </div>
-                
-                <div class="tb-10"><hr class="devider"></div>
-                <h3 class="subheading">Panna of ank 9</h3>
-                <div class="row bidoptions-list tb-10">
-                    
-                    <?php 
-                    $double_patti_9 = array(117,144,199,225,388,559,577,667,900);
-                    
-                    foreach($double_patti_9 as $digit){?>
-                        
-                        <div class="col-3">
-                                    <div class="bidinputdiv">
-                                        <lable><?php echo $digit;?></lable>
-                                        <input type="text" value="" class="pointinputbox" id="double_patti<?php echo $digit;?>" name="double_patti<?php echo $digit;?>" readonly>
-                                    </div>
-                        </div>
-                                
-                    <?php } ?>
-
-                </div>
-                
-                
                 <input type="hidden" id="total_point" name="total_point" value="">
                 <input type="hidden" id="selected_amount" value="">
-                
                 <input type="hidden" name="game_id" value="<?php echo $game_id;?>">
                 
-                <div class="tbmar-20 text-center">
-                    <p>Total Points : <a id="total_point2">0</a></p>
-                </div>
-                
-                <div class="row bidoptions-list tb-10">
-                                <div class="col-6"> 
-                                  <button class="btn btn-light btn-streched" onclick = "resetjsvar();" type="reset">Reset</button>
-                                </div>
-                                
-                                <div class="col-6">
-                                <button class="btn btn-theme btn-streched" type="submit" name="single_submit">Submit</button>
-                                </div>
-                                
+                <!-- PREMIUM CHECKOUT BLOCK -->
+                <div class="premium-checkout-block mt-3 mb-4">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <span class="total-label">Total Points</span>
+                        <span class="total-value">₹ <span id="total_point2">0</span></span>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-6" style="padding-right: 5px;"> 
+                            <button class="btn btn-outline-danger premium-btn-streched" onclick="resetjsvar();" type="reset">
+                                <i class="fa fa-refresh"></i> Reset
+                            </button>
+                        </div>
+                        <div class="col-6" style="padding-left: 5px;">
+                            <button class="btn btn-blue premium-btn-streched" type="submit" name="single_submit">
+                                <i class="fa fa-check-circle"></i> Submit
+                            </button>
+                        </div>
+                    </div>
                 </div>
                 
                 <?php }else{ ?>

@@ -39,11 +39,12 @@ session_start();
             
             
             <div class="container" >  
-            <div class="card-full-page tb-10">
+            <div class="card-full-page tb-10" style="background: transparent !important; box-shadow: none !important; border: none !important;">
                 
-                <div class="text-center tb-10">
-                    <h3 class="gdash3">Starline <?php echo $game_title;?> Dashboard</h3>
-                    <span>Select Bidding Option</span>
+                <!-- PREMIUM HERO SECTION -->
+                <div class="starline-hero-banner text-center">
+                    <h3 class="hero-title">Starline <?php echo $game_title;?></h3>
+                    <span class="hero-subtitle">Select Bidding Option</span>
                 </div>
                 
                 <div class="tb-10">&nbsp;</div>
@@ -63,59 +64,48 @@ session_start();
                     ?>
                 
                 <?php if(time() < $startline_time){ ?>
-                <div class="row bidoptions-list tb-10">
-                                <div class="col-4">
-                                  <a href="starline-single.php?gid=<?php echo $game_id;?>" class="bidtypebox">
-                                      <img src="assets/img/single.png">
-                                      <p>Single Ank</p>
-                                  </a>
-                                </div>
-                                
-                                
-                                <div class="col-4">
-                                  <a href="starline-single-patti.php?gid=<?php echo $game_id;?>" class="bidtypebox">
-                                      <img src="assets/img/single_patti.png">
-                                      <p>Single Patti</p>
-                                  </a>
-                                </div>
-                                
-                                <div class="col-4">
-                                  <a href="starline-double-patti.php?gid=<?php echo $game_id;?>" class="bidtypebox">
-                                      <img src="assets/img/double_patti.png">
-                                      <p>Double Patti</p>
-                                  </a>
-                                </div>
+                
+                <!-- PREMIUM 2x2 GRID -->
+                <div class="row bidoptions-list">
+                    <div class="col-6 mb-3" style="padding-bottom: 12px;">
+                        <a href="starline-single.php?gid=<?php echo $game_id;?>" class="premium-game-card">
+                            <div class="icon-wrapper"><img src="assets/img/single.png"></div>
+                            <p>Single Ank</p>
+                        </a>
+                    </div>
+                    
+                    <div class="col-6 mb-3" style="padding-bottom: 12px;">
+                        <a href="starline-single-patti.php?gid=<?php echo $game_id;?>" class="premium-game-card">
+                            <div class="icon-wrapper"><img src="assets/img/single_patti.png"></div>
+                            <p>Single Patti</p>
+                        </a>
+                    </div>
+                    
+                    <div class="col-6 mb-3" style="padding-bottom: 12px;">
+                        <a href="starline-double-patti.php?gid=<?php echo $game_id;?>" class="premium-game-card">
+                            <div class="icon-wrapper"><img src="assets/img/double_patti.png"></div>
+                            <p>Double Patti</p>
+                        </a>
+                    </div>
 
-        
+                    <div class="col-6 mb-3" style="padding-bottom: 12px;">
+                        <a href="starline-triple-patti.php?gid=<?php echo $game_id;?>" class="premium-game-card">
+                            <div class="icon-wrapper"><img src="assets/img/triple_patti.png"></div>
+                            <p>Triple Patti</p>
+                        </a>
+                    </div>
                 </div>
                 
-                <div class="row bidoptions-list tb-10">
-                                
-                                
-                                <div class="col-4">
-                                  <a href="starline-triple-patti.php?gid=<?php echo $game_id;?>" class="bidtypebox">
-                                      <img src="assets/img/triple_patti.png">
-                                      <p>Triple Patti</p>
-                                  </a>
-                                </div>
-
-        
+                <div class="hero-alert-box text-center mt-2">
+                    <i class="fa fa-info-circle"></i> <span>Khelo and Jeeto Har Ghante.</span>
                 </div>
-
-                
-                <div class="tbmar-40 text-center">
-                    <span>Khelo and Jeeto Har Ghante. </span>
-
-                </div>
-                
-                
                 
                 <?php }else{ ?>
                 
-                <div class="tbmar-40 text-center">
-                    <span>Sorry! Bidding is Close for <?php echo $game_title;?>. <br> Play for Next One.</span>
-
-        
+                <!-- CLOSED VIEW -->
+                <div class="hero-alert-box danger text-center mt-3">
+                    <i class="fa fa-clock-o" style="font-size: 38px; margin-bottom: 12px; display: block; opacity: 0.8;"></i>
+                    <span style="font-size: 16px;"><strong>Sorry! Bidding is Closed</strong><br>for <?php echo $game_title;?>.<br><span style="font-size: 14px; font-weight: 500;">Please play for the next one.</span></span>
                 </div>
                 
                 <?php } ?>
@@ -124,7 +114,6 @@ session_start();
                 <?php } $stmt->close();?>
                         
                 
-
 
             </div>
             </div>

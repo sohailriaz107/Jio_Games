@@ -6,9 +6,9 @@ session_start();
 	include("include/functions.php");
 
 
-if($_GET['page'] >0)
+if (isset($_GET['page']) && $_GET['page'] > 0)
     {
-        $page = filter_var($_GET['page'], FILTER_SANITIZE_NUMBER_INT);
+		$page = filter_var($_GET['page'], FILTER_SANITIZE_NUMBER_INT);
     }else{
         $page =1;
     }
@@ -34,110 +34,101 @@ if($_GET['page'] >0)
         <div id="content">
             <?php include("include/nav.php"); ?>
             
-            <div class="container" > 
-            
-            <div class="text-center tb-10">
-                    <h3 class="gdash3">Starline Bidding History</h3>
-                    <span style="font-size:12px;">Starline markets bidding records</span>
-            </div>
-            <div class="tb-10">
-            <?php
-            
-            $limit = 10;
-            $offset = ($page-1)*$limit;
-            $user_id = filter_var($_SESSION['usr_id'], FILTER_SANITIZE_NUMBER_INT);
-            // Count of all records
-            $query   = "SELECT COUNT(id) as rowNum FROM user_transaction where user_id='".$user_id."' and type='bid' and starline='1'";
-            $res  = mysqli_query($con,$query); 
-            $res1 = mysqli_fetch_assoc($res);
-            $allRecrods= $res1['rowNum'];
-            $totoalPages = ceil($allRecrods / $limit);
-            
-            
-            
-             $qry = "SELECT user_transaction.*, starline.name as game_name FROM user_transaction INNER JOIN starline ON user_transaction.game_id = starline.id WHERE user_id='".$user_id."' AND user_transaction.type='bid' AND user_transaction.starline='1' order by id DESC LIMIT $offset,$limit";
-             $result = mysqli_query($con,$qry);
-             $data["records"]=array();
-             if(mysqli_num_rows($result)>0){
-                 
-                 while ($row = mysqli_fetch_array($result)){
-		            
-		         
-		         if($row['win']=='' || $row['win']=='NULL'){
-		              $game_result = 'Pending';
-		          }elseif($row['win']=='0')
-		          {
-		              $game_result = 'LOSE';
-		          }else{
-		              $game_result = $row['win'];
-		          }
-                
-                
-                ?>
-                <div class="history-list-box">
-                    <div class="fixed"><?php echo $row['game_type'];?></div>
-                    
-                    
-                    
-                    <div class="row bid-row">
-                        <div class="col-12 gm-name"><?php echo $row['game_name'];?></div>
-                    </div>
-                    
-                    <div class="row bid-row">
-                        <div class="col-6"> <span class="dark">Play On:</span> <?php echo date('d/m/Y',strtotime($row['timestamp'])).'('.date('l', strtotime($row['timestamp'])).')';?></div>
-                        <div class="col-6"> <span class="dark">Play for:</span> <?php echo date('d/m/Y',strtotime($row['date'])).'('.date('l', strtotime($row['date'])).')';?></div>
-                    </div>
-                    
-                    
-                    <div class="row bid-row">
-                        <div class="col-6"> <span class="dark">Digit:</span> <?php echo $row['digit'];?></div>
-                        <div class="col-6"> <span class="dark">Points:</span> <?php echo number_format($row['amount'],2);?></div>
-                    </div>
-                    
-                    
-                    
-                    <div class="row bid-row">
-                        <div class="col-6"> <span class="dark">Bid ID:</span> <?php echo $row['id'];?></div>
-                        <div class="col-6"> <span class="dark">Bid Time:</span> <?php echo date('d/m/Y h:i A',strtotime($row['timestamp']));?></div>
-                    </div>
-                    
-                    <?php if($row['win']=='' || $row['win']=='NULL'){?>
-                            <p class="bid-pending"> Pending, Wait for Result <i class="fa fa-hourglass-start" aria-hidden="true"></i> </p>
-                            <?php }elseif($row['win']=='0'){ ?>
-                           <p class="bid-lose"> Lose, Please try again. <i class="fa fa-frown-o" aria-hidden="true"></i> </p>
-                            
-                            <?php }else{ ?>
-                            <p class="bid-won"> Congratulations, you won! <i class="fa fa-trophy" aria-hidden="true"></i></p>
-                    <?php } ?>
-                    </div>
-                    
-                    
-            <?php  } ?>
-            
-            <?php if($page == 1){?>
-            <a href="?page=<?php echo $page-1;?>" class="btn btn-theme disabled" style="float: left;"><< Previous</a> 
-            <?php }else{?> 
-            <a href="?page=<?php echo $page-1;?>" class="btn btn-theme" style="float: left;"><< Previous</a> 
-            <?php } ?>
-           
-            
-            <?php if($page == $totoalPages){?>
-            <a href="?page=<?php echo $page+1;?>" class="btn btn-theme disabled" style="float: right;">Next >></a>
-            <?php }else{?>
-            
-            <a href="?page=<?php echo $page+1;?>" class="btn btn-theme" style="float: right;">Next >></a>
-            <?php } ?>
-            
-            <br><br>
-            <?php }else{?>
-             
-                <div class="tbmar-40 text-center">
-                    <p>No Record Found.</p>
+            <div class="container" style="padding-top: 20px;">
+                <div class="tb-10" style="text-align:center; margin-bottom: 30px;">
+                    <h1 class="gdash3" style="font-size:24px; font-weight: 800; margin-bottom: 5px;">Starline Bidding History</h1>
+                    <p style="font-size:14px; color: #718096; margin-bottom: 0;">Starline markets bidding records</p>
                 </div>
-                
-             <?php } ?>
-         
+
+                <div class="history-list-container">
+                    <?php
+                    $limit = 10;
+                    $offset = ($page-1)*$limit;
+                    $user_id = filter_var($_SESSION['usr_id'], FILTER_SANITIZE_NUMBER_INT);
+                    
+                    // Count of all records
+                    $query   = "SELECT COUNT(id) as rowNum FROM user_transaction where user_id='".$user_id."' and type='bid' and starline='1'";
+                    $res  = mysqli_query($con,$query); 
+                    $res1 = mysqli_fetch_assoc($res);
+                    $allRecrods= $res1['rowNum'];
+                    $totoalPages = ceil($allRecrods / $limit);
+
+                    $qry = "SELECT user_transaction.*, starline.name as game_name FROM user_transaction INNER JOIN starline ON user_transaction.game_id = starline.id WHERE user_id='".$user_id."' AND user_transaction.type='bid' AND user_transaction.starline='1' order by id DESC LIMIT $offset,$limit";
+                    $result = mysqli_query($con,$qry);
+                    
+                    if(mysqli_num_rows($result)>0){
+                        while ($row = mysqli_fetch_array($result)){
+                            $status_class = 'pending';
+                            if($row['win'] == '0') $status_class = 'lose';
+                            elseif($row['win'] != '' && $row['win'] != 'NULL') $status_class = 'won';
+                            ?>
+                            
+                            <div class="premium-history-card">
+                                <div class="history-card-status-bar status-bar-<?php echo $status_class; ?>"></div>
+                                <div class="history-card-header">
+                                    <span class="game-name"><?php echo $row['game_name'];?></span>
+                                    <span class="type-badge"><?php echo $row['game_type'];?></span>
+                                </div>
+                                <div class="history-card-body">
+                                    <div class="history-detail-row">
+                                        <div class="detail-item">
+                                            <i class="fa fa-calendar"></i>
+                                            <span class="label">Date:</span> <?php echo date('d/m/Y',strtotime($row['date']));?>
+                                        </div>
+                                        <div class="detail-item">
+                                            <i class="fa fa-dot-circle-o"></i>
+                                            <span class="label">Digit:</span> <?php echo $row['digit'];?>
+                                        </div>
+                                        <div class="detail-item">
+                                            <i class="fa fa-money"></i>
+                                            <span class="label">Points:</span> <?php echo number_format($row['amount'],2);?>
+                                        </div>
+                                        <div class="detail-item">
+                                            <i class="fa fa-ticket"></i>
+                                            <span class="label">Bid ID:</span> <?php echo $row['id'];?>
+                                        </div>
+                                    </div>
+                                    <div style="font-size: 11px; color: #a0aec0; margin-top: 10px; display: flex; justify-content: space-between;">
+                                        <span><i class="fa fa-clock-o"></i> Time: <?php echo date('d/m/Y h:i A',strtotime($row['timestamp']));?></span>
+                                        <span><i class="fa fa-info-circle"></i> <?php echo date('l', strtotime($row['timestamp']));?></span>
+                                    </div>
+                                </div>
+                                <div class="history-card-footer">
+                                    <?php if($row['win']=='' || $row['win']=='NULL'){?>
+                                        <div class="outcome-banner outcome-pending">
+                                            <i class="fa fa-hourglass-start"></i> Pending, Wait for Result
+                                        </div>
+                                    <?php }elseif($row['win']=='0'){ ?>
+                                        <div class="outcome-banner outcome-lose">
+                                            <i class="fa fa-frown-o"></i> Lose, Better luck next time
+                                        </div>
+                                    <?php }else{ ?>
+                                        <div class="outcome-banner outcome-won">
+                                            <i class="fa fa-trophy"></i> Congratulations, you won!
+                                        </div>
+                                    <?php } ?>
+                                </div>
+                            </div>
+                        <?php } ?>
+                        
+                        <div class="pagination-container">
+                            <a href="?page=<?php echo $page-1;?>" class="btn btn-theme btn-pill <?php echo ($page <= 1) ? 'disabled' : ''; ?>">
+                                <i class="fa fa-chevron-left"></i> Previous
+                            </a> 
+                            <span style="font-weight: 700; color: #4a5568;">Page <?php echo $page; ?> of <?php echo $totoalPages; ?></span>
+                            <a href="?page=<?php echo $page+1;?>" class="btn btn-theme btn-pill <?php echo ($page >= $totoalPages) ? 'disabled' : ''; ?>">
+                                Next <i class="fa fa-chevron-right"></i>
+                            </a>
+                        </div>
+                    <?php }else{ ?>
+                        <div class="empty-state">
+                            <i class="fa fa-history"></i>
+                            <p>No starline bidding records found yet.</p>
+                        </div>
+                    <?php } ?>    
+                </div>
             </div>
+
             
             <br><br><br>
             </div>

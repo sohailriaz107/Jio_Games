@@ -81,7 +81,7 @@ if (isset($_POST['update_bank_details']) && isset($_SESSION['usr_id'])!="") {
             <?php include("include/nav.php"); ?>
             
             <div class="container" >  
-            <div class="card tb-10">
+            <div class="premium-auth-card">
                 <?php 
                 
                 $user_id = $_SESSION['usr_id'];
@@ -117,7 +117,7 @@ if (isset($_POST['update_bank_details']) && isset($_SESSION['usr_id'])!="") {
                     <input type="text" class="form-control" name="bank_name" value="<?php echo $bank_name;?>" maxlength="25" minlength="3" placeholder="HDFC/SBI/Bank of india" id="bank_name" autocomplete="off" required>
                   </div>
                   
-                  <input type="hidden" name="api_acess_token" value="<?php echo $_SESSION['api_acess_token'];?>">
+                  <input type="hidden" name="api_access_token" value="<?php echo $_SESSION['api_access_token'] ?? '';?>">
                   <?php 
                   if($account_holder_name =='' || $account_holder_name ==NULL){
                   ?>        
@@ -130,7 +130,7 @@ if (isset($_POST['update_bank_details']) && isset($_SESSION['usr_id'])!="") {
                 
                 <div class="text-center tbmar-20">
                     <p>Unable to update?</p>
-                    <a href="https://wa.me/<?php echo get_SettingValue('PWA_whatsapp2');?>" class="btn btn-outline btn-login">Contact Admin</a>
+                    <a href="https://wa.me/<?php echo get_SettingValue('PWA_whatsapp2');?>" class="btn btn-login">Contact Admin</a>
                 </div>
 
             </div>

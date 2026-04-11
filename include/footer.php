@@ -1,17 +1,40 @@
-<br><br><br>
-<div id="footer-bar" class="footer-bar-1">
-<a href="<?php echo SITEURL;?>" class="active-nav"><i class="fa fa-home"></i><span>Home</span></a>
-<a href="my-history.php"><i class="fa fa-list"></i><span>History</span></a>
-<a href="my-profile.php"><i class="fa fa-user"></i><span>Profile</span></a>
-<a href="transaction-history.php"><i class="fa fa-list-alt"></i><span>Passbook</span></a>
-<a href="bidding-history.php"><i class="fa fa-history"></i><span>My Bids</span></a>
-</div>
+
 
 <?php if(0){?>
 <div class="overlay"></div>
 <div id="loading-bg"></div>
 <div id="mloader" class="lds-ripple"><div></div><div></div></div>
 <?php } ?>
+
+<!-- ===== NEW BOTTOM NAV BAR ===== -->
+<?php
+$current_page = basename($_SERVER['PHP_SELF']);
+?>
+<nav class="bottom-nav-bar">
+    <a href="index.php" class="bnav-item <?php echo ($current_page == 'index.php') ? 'active' : ''; ?>">
+        <i class="fa fa-home"></i>
+        <span>Home</span>
+    </a>
+    <a href="add-fund.php" class="bnav-item <?php echo ($current_page == 'add-fund.php') ? 'active' : ''; ?>">
+        <i class="fa fa-plus-circle"></i>
+        <span>Fund</span>
+    </a>
+    <a href="starline-play.php" class="bnav-item bnav-center">
+        <div class="bnav-fab">
+            <i class="fa fa-play"></i>
+        </div>
+        <span>Play</span>
+    </a>
+    <a href="my-history.php" class="bnav-item <?php echo ($current_page == 'my-history.php') ? 'active' : ''; ?>">
+        <i class="fa fa-list-alt"></i>
+        <span>History</span>
+    </a>
+    <a href="my-profile.php" class="bnav-item <?php echo ($current_page == 'my-profile.php' || $current_page == 'update-bank-details.php' || $current_page == 'change-password.php') ? 'active' : ''; ?>">
+        <i class="fa fa-user-circle"></i>
+        <span>Profile</span>
+    </a>
+</nav>
+<!-- ============================= -->
 
     <!-- jQuery CDN - Slim version (=without AJAX) -->
     <script src="assets/js/jquery-3.3.1.slim.min.js"></script>
@@ -58,20 +81,21 @@
                 
             });
             
-            $('.pointinputbox').on('click', function () {
-                
+            // Handling click on digit card
+            $('.premium-digit-card, .premium-panna-card').on('click', function (e) {
+                var $input = $(this).find('.pointinputbox');
                 var selected_amount = $('#selected_amount').val();
                 
                 if(selected_amount == ''){
                     alert('Please Select Amount');
                 }else{
-                    var exist_amount = $(this).val();
+                    var exist_amount = $input.val();
                     
                     if(exist_amount == ''){
                         exist_amount=0;
                     }
                     var total = parseInt(exist_amount) + parseInt(selected_amount);
-                    $(this).val(total);
+                    $input.val(total);
                     grantotal += parseInt(selected_amount);
                     $('#total_point2').html(grantotal);
                     $('#total_point').val(grantotal);

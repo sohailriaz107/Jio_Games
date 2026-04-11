@@ -28,37 +28,77 @@ session_start();
         <div id="content">
             <?php include("include/nav.php"); ?>
             
-            <div class="container" > 
-            <div class="tb-10" style="text-align:center;">
-                <h1 class="gdash3" style="font-size:22px;"> Game Rate List</h1>
-                <span style="font-size:12px;">We Offer Best Rate in market - Full rate</span>
-                <div class="row game-list-inner">
-                                <div class="col-12 game-rates">
-                                  <h2 style="font-size:16px; color:var(--primary-light);">Main Games Win Ratio</h2>
-                                  <p>Single ank : <span>10 ka 95</span></p>
-                                  <p>jodi : <span>10 ka 950</span></p>
-                                  <p>Single Panna : <span>10 ka 1400</span></p>
-                                  <p>Double Panna : <span>10 ka 2800</span></p>
-                                  <p>Triple Panna : <span>10 ka 6,000</span></p>
-                                  <p>half Sangam : <span>10 ka 10,000</span></p>
-                                  <p>Full Sangam : <span>10 ka 1,00,000</span></p>
-                                </div>
-                </div>
-                
-                <div class="row game-list-inner">
-                                <div class="col-12 game-rates">
-                                  <h2 style="font-size:16px; color:var(--primary-light);">Starline Games Win Ratio</h2>
-                                  <p>Single ank : <span>10 ka 100</span></p>
-                                  <p>Single Panna : <span>10 ka 1600</span></p>
-                                  <p>Double Panna : <span>10 ka 3,000</span></p>
-                                  <p>Triple Panna : <span>10 ka 10,000</span></p>
-                                  
-                                </div>
+            <div class="container" style="padding-top: 20px;">
+                <div class="tb-10" style="text-align:center; margin-bottom: 30px;">
+                    <h1 class="gdash3" style="font-size:24px; font-weight: 800; margin-bottom: 5px;">Game Rate List</h1>
+                    <p style="font-size:14px; color: #718096; margin-bottom: 0;">We Offer Best Rate in market - Full rate</p>
                 </div>
 
-                        
+                <!-- Main Games Card -->
+                <div class="premium-rate-card">
+                    <div class="rate-card-header">
+                        <i class="fa fa-trophy"></i>
+                        <h2>Main Games Win Ratio</h2>
+                    </div>
+                    <ul class="rate-list">
+                        <li class="rate-item">
+                            <span class="label">Single Ank</span>
+                            <span class="value">10 ka 95</span>
+                        </li>
+                        <li class="rate-item">
+                            <span class="label">Jodi</span>
+                            <span class="value">10 ka 950</span>
+                        </li>
+                        <li class="rate-item">
+                            <span class="label">Single Panna</span>
+                            <span class="value">10 ka 1400</span>
+                        </li>
+                        <li class="rate-item">
+                            <span class="label">Double Panna</span>
+                            <span class="value">10 ka 2800</span>
+                        </li>
+                        <li class="rate-item">
+                            <span class="label">Triple Panna</span>
+                            <span class="value">10 ka 6,000</span>
+                        </li>
+                        <li class="rate-item">
+                            <span class="label">Half Sangam</span>
+                            <span class="value">10 ka 10,000</span>
+                        </li>
+                        <li class="rate-item">
+                            <span class="label">Full Sangam</span>
+                            <span class="value">10 ka 1,00,000</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Starline Games Card -->
+                <div class="premium-rate-card">
+                    <div class="rate-card-header">
+                        <i class="fa fa-star"></i>
+                        <h2>Starline Games Win Ratio</h2>
+                    </div>
+                    <ul class="rate-list">
+                        <li class="rate-item">
+                            <span class="label">Single Ank</span>
+                            <span class="value">10 ka 100</span>
+                        </li>
+                        <li class="rate-item">
+                            <span class="label">Single Panna</span>
+                            <span class="value">10 ka 1600</span>
+                        </li>
+                        <li class="rate-item">
+                            <span class="label">Double Panna</span>
+                            <span class="value">10 ka 3,000</span>
+                        </li>
+                        <li class="rate-item">
+                            <span class="label">Triple Panna</span>
+                            <span class="value">10 ka 10,000</span>
+                        </li>
+                    </ul>
+                </div>
             </div>
-            </div>
+
       
             
         </div>

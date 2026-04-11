@@ -28,36 +28,39 @@ session_start();
         <div id="content">
             <?php include("include/nav.php"); ?>
             
-            <div class="container" > 
-            <div class="tb-10">
+            <div class="container" style="padding-top: 20px;">
+                <div class="tb-10" style="text-align:center; margin-bottom: 30px;">
+                    <h1 class="gdash3" style="font-size:24px; font-weight: 800; margin-bottom: 5px;">Notifications</h1>
+                    <p style="font-size:14px; color: #718096; margin-bottom: 0;">Stay updated with latest news and alerts</p>
+                </div>
             
-                
-        <?php
-        $today_date = date('Y-m-d');
-        $result = mysqli_query($con,"SELECT * FROM notification order by id DESC limit 50");
-		if(mysqli_num_rows($result)>0){
-                 
-            while ($row = mysqli_fetch_array($result)){
-            ?> 
-            <div class="row game-list-inner">
-                                <div class="col-12 notifications">
-                                  <p class="t"><?php echo $row['title'];?></span></p>
-                                  <p class="d"><?php echo $row['description'];?></p>
-                                  <p class="time"><?php echo date('M d, Y h:i A',strtotime($row['date'].' '.$row['time']));?></p>
-                                  
-                                </div>
+                <div class="notif-list-container">
+                    <?php
+                    $today_date = date('Y-m-d');
+                    $result = mysqli_query($con,"SELECT * FROM notification order by id DESC limit 50");
+                    if(mysqli_num_rows($result)>0){
+                        while ($row = mysqli_fetch_array($result)){
+                        ?> 
+                        <div class="notification-card">
+                            <div class="notif-icon-circle">
+                                <i class="fa fa-bell-o"></i>
+                            </div>
+                            <div class="notif-content">
+                                <h3 class="notif-title"><?php echo $row['title'];?></h3>
+                                <p class="notif-desc"><?php echo $row['description'];?></p>
+                                <span class="notif-time"><i class="fa fa-clock-o"></i> <?php echo date('M d, Y h:i A',strtotime($row['date'].' '.$row['time']));?></span>
+                            </div>
+                        </div>
+                        <?php } ?>
+                    <?php }else{ ?>
+                        <div class="empty-state">
+                            <i class="fa fa-bell-slash-o"></i>
+                            <p>No notifications found. You're all caught up!</p>
+                        </div>
+                    <?php } ?>    
+                </div>
             </div>
-            <?php } ?>
-            
-        <?php }else{ ?>
-             
-            <div class="tbmar-40 text-center">
-                <p>No record found</p>
-            </div>
-        <?php } ?>    
 
-            </div>
-            </div>
       
         <br><br><br>  
         </div>
