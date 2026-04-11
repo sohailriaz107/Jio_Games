@@ -27,8 +27,39 @@
   });
 </script>
 <?php } ?>
-<link rel="stylesheet" href="assets/css/style.css?v=2.0">
+<link rel="stylesheet" href="assets/css/style.css?v=2.1">
 <style>
+/* New Premium Design Tokens */
+:root {
+    --primary-blue: #0044bb;
+    --primary-gradient: linear-gradient(135deg, #0044bb, #0d6efd);
+    --accent-gold: #f39c12;
+    --accent-red: #e74c3c;
+    --accent-green: #2ecc71;
+    --card-shadow: 0 8px 30px rgba(0,0,0,0.05);
+    --border-radius-lg: 16px;
+    --border-radius-xl: 24px;
+}
+
+/* Base Body Style */
+body {
+    background-color: #f6f9fc;
+    color: #333;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Utility Classes */
+.premium-shadow { box-shadow: var(--card-shadow); }
+.rounded-lg { border-radius: var(--border-radius-lg); }
+.rounded-xl { border-radius: var(--border-radius-xl); }
+.text-gradient { background: var(--primary-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+/* Sticky Bottom Nav Space */
+body.has-bottom-nav { padding-bottom: 75px; }
+
+/* Modal Improvements */
+.modal-content { border: none; border-radius: var(--border-radius-lg); overflow: hidden; }
+
  #loading-bg {
           width: 100%;
           height: 100%;
