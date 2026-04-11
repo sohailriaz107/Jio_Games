@@ -4,8 +4,6 @@ session_start();
 	include("include/connect.php");
 	include("include/session.php");
 	include("include/functions.php");
-	
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -15,97 +13,102 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>Game Rate | Winning Ratio | <?php echo $site_title;?></title>
-    <meta name="description" content="Explore our exciting game rates and win big!. Single ank jodi, single panna, double patti, triple patti, half sangam, full sangam, Our rates are competitive and offer great value for your money. Whether you're a seasoned player or new to the game, there's something for everyone. Check out our game rate page now and start your winning streak today!">
+    <title>Game Rates - Jio Games</title>
+    
     <?php include("include/head.php"); ?>
+    <style>
+        .page-header { background: var(--primary-gradient); padding: 30px 20px; border-radius: 0 0 30px 30px; text-align: center; color: white; margin-bottom: 30px; box-shadow: 0 10px 30px rgba(0,68,187,0.1); }
+        .page-header h1 { font-size: 24px; font-weight: 800; margin: 0; color: #fff !important; }
+        .page-header p { font-size: 14px; margin-top: 8px; font-weight: 700; color: #FFD700 !important; letter-spacing: 0.5px; text-shadow: 0 1px 3px rgba(0,0,0,0.2); }
+
+        .section-title-wrapper { margin-bottom: 15px; padding: 0 10px; text-align: center; }
+        .section-title { font-size: 16px; font-weight: 800; color: #1a202c; display: inline-block; position: relative; padding-bottom: 8px; text-align: center; }
+        .section-title::after { content: ''; position: absolute; left: 50%; transform: translateX(-50%); bottom: 0; width: 40px; height: 3px; background: var(--primary-blue); border-radius: 2px; }
+
+        .rates-grid { display: grid; grid-template-columns: 1fr; gap: 15px; margin-bottom: 40px; padding: 0 10px; }
+
+        .rate-card { background: #fff; border-radius: 20px; padding: 25px 20px; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.03); border: 1px solid rgba(0,0,0,0.05); transition: transform 0.2s; }
+        .rate-card:active { transform: scale(0.98); }
+
+        .icon-container { width: 50px; height: 50px; background: #f0f7ff; border-radius: 14px; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px; color: var(--primary-blue); font-size: 22px; }
+        
+        .rate-name { font-size: 16px; font-weight: 800; color: #2d3748; margin-bottom: 6px; }
+        .rate-value { font-size: 14px; font-weight: 600; color: #718096; letter-spacing: 0.5px; }
+
+        @media (min-width: 768px) {
+            .rates-grid { grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        }
+    </style>
 </head>
 
 <body>
 
     <div class="wrapper">
-        
         <?php include("include/sidebar.php"); ?>
         <div id="content">
             <?php include("include/nav.php"); ?>
             
-            <div class="container" style="padding-top: 20px;">
-                <div class="tb-10" style="text-align:center; margin-bottom: 30px;">
-                    <h1 class="gdash3" style="font-size:24px; font-weight: 800; margin-bottom: 5px;">Game Rate List</h1>
-                    <p style="font-size:14px; color: #718096; margin-bottom: 0;">We Offer Best Rate in market - Full rate</p>
-                </div>
-
-                <!-- Main Games Card -->
-                <div class="premium-rate-card">
-                    <div class="rate-card-header">
-                        <i class="fa fa-trophy"></i>
-                        <h2>Main Games Win Ratio</h2>
-                    </div>
-                    <ul class="rate-list">
-                        <li class="rate-item">
-                            <span class="label">Single Ank</span>
-                            <span class="value">10 ka 95</span>
-                        </li>
-                        <li class="rate-item">
-                            <span class="label">Jodi</span>
-                            <span class="value">10 ka 950</span>
-                        </li>
-                        <li class="rate-item">
-                            <span class="label">Single Panna</span>
-                            <span class="value">10 ka 1400</span>
-                        </li>
-                        <li class="rate-item">
-                            <span class="label">Double Panna</span>
-                            <span class="value">10 ka 2800</span>
-                        </li>
-                        <li class="rate-item">
-                            <span class="label">Triple Panna</span>
-                            <span class="value">10 ka 6,000</span>
-                        </li>
-                        <li class="rate-item">
-                            <span class="label">Half Sangam</span>
-                            <span class="value">10 ka 10,000</span>
-                        </li>
-                        <li class="rate-item">
-                            <span class="label">Full Sangam</span>
-                            <span class="value">10 ka 1,00,000</span>
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- Starline Games Card -->
-                <div class="premium-rate-card">
-                    <div class="rate-card-header">
-                        <i class="fa fa-star"></i>
-                        <h2>Starline Games Win Ratio</h2>
-                    </div>
-                    <ul class="rate-list">
-                        <li class="rate-item">
-                            <span class="label">Single Ank</span>
-                            <span class="value">10 ka 100</span>
-                        </li>
-                        <li class="rate-item">
-                            <span class="label">Single Panna</span>
-                            <span class="value">10 ka 1600</span>
-                        </li>
-                        <li class="rate-item">
-                            <span class="label">Double Panna</span>
-                            <span class="value">10 ka 3,000</span>
-                        </li>
-                        <li class="rate-item">
-                            <span class="label">Triple Panna</span>
-                            <span class="value">10 ka 10,000</span>
-                        </li>
-                    </ul>
-                </div>
+            <div class="page-header">
+                <h1>Game Rate List</h1>
+                <p>We Offer Best Rate in Market</p>
             </div>
 
-      
-            
+            <div class="container pb-5">
+                
+                <div class="section-title-wrapper">
+                    <h2 class="section-title">Main Games Win Ratio</h2>
+                </div>
+
+                <div class="rates-grid">
+                    <?php 
+                    $main_rates = [
+                        ['Single Ank', '10 ka 95', 'fa-dot-circle-o'],
+                        ['Jodi', '10 ka 950', 'fa-link'],
+                        ['Single Panna', '10 ka 1400', 'fa-th-large'],
+                        ['Double Panna', '10 ka 2800', 'fa-th'],
+                        ['Triple Panna', '10 ka 6,000', 'fa-cubes'],
+                        ['Half Sangam', '10 ka 10,000', 'fa-puzzle-piece'],
+                        ['Full Sangam', '10 ka 1,00,000', 'fa-trophy']
+                    ];
+                    foreach($main_rates as $rate) { ?>
+                        <div class="rate-card">
+                            <div class="icon-container">
+                                <i class="fa <?php echo $rate[2]; ?>"></i>
+                            </div>
+                            <h3 class="rate-name"><?php echo $rate[0]; ?></h3>
+                            <p class="rate-value"><?php echo $rate[1]; ?></p>
+                        </div>
+                    <?php } ?>
+                </div>
+
+                <div class="section-title-wrapper">
+                    <h2 class="section-title">Starline Games Win Ratio</h2>
+                </div>
+
+                <div class="rates-grid">
+                    <?php 
+                    $starline_rates = [
+                        ['Single Ank', '10 ka 100', 'fa-star'],
+                        ['Single Panna', '10 ka 1600', 'fa-th-large'],
+                        ['Double Panna', '10 ka 3,000', 'fa-th'],
+                        ['Triple Panna', '10 ka 10,000', 'fa-cubes']
+                    ];
+                    foreach($starline_rates as $rate) { ?>
+                        <div class="rate-card">
+                            <div class="icon-container">
+                                <i class="fa <?php echo $rate[2]; ?>"></i>
+                            </div>
+                            <h3 class="rate-name"><?php echo $rate[0]; ?></h3>
+                            <p class="rate-value"><?php echo $rate[1]; ?></p>
+                        </div>
+                    <?php } ?>
+                </div>
+
+            </div>
         </div>
     </div>
     
     <?php include("include/footer.php"); ?>
-
 </body>
 
 </html>

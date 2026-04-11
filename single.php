@@ -17,12 +17,6 @@ if (isset($_POST['single_submit']) && isset($_SESSION['usr_id']) && $_SESSION['u
         exit;
     }
     
-    if (0) {
-        echo "<script>alert('Kindly use our Android App for bidding. Thanks for more info Contact Admin sir.')</script>";
-        echo "<script>window.location = 'index.php';</script>";
-        exit;
-    }
-    
     $user_id = filter_var($_SESSION['usr_id'], FILTER_SANITIZE_NUMBER_INT);
     $game_id = filter_var($_POST['game_id'], FILTER_SANITIZE_NUMBER_INT);
     $total_point = filter_var($_POST['total_point'], FILTER_SANITIZE_NUMBER_INT);
@@ -60,37 +54,25 @@ if (isset($_POST['single_submit']) && isset($_SESSION['usr_id']) && $_SESSION['u
                     $stmt->execute();
                     $stmt->close();
                     UpdateBalanceInUserTable($user_id, $new_balance);
-                    
                 }
             }
         }
 		
 		$sql = "UPDATE users SET last_bid_placed_on = ? WHERE id = ?";
-                    $stmt = $con->prepare($sql);
-                    $stmt->bind_param("si", $date, $user_id);
-                    $stmt->execute();
-                    $stmt->close();
+        $stmt = $con->prepare($sql);
+        $stmt->bind_param("si", $date, $user_id);
+        $stmt->execute();
+        $stmt->close();
 		
-        
-        if ($stmt) {
-            echo "<script>window.location = 'single.php?bidplacedsuccessfully&" . $get_parameters . "';</script>";
-            exit;
-        } else {
-            echo "<script>window.location = 'single.php?bidfailed&" . $get_parameters . "';</script>";
-            exit;
-        }
+        echo "<script>window.location = 'single.php?bidplacedsuccessfully&" . $get_parameters . "';</script>";
+        exit;
     }
 }
 
-
-	
-	
-	if($child_game_id =='' || $parent_game_id =='' || $default_game ==''){
-	    echo "<script>window.location = '404.php';</script>";
-	    exit;
-	}
-	
-	
+if($child_game_id =='' || $parent_game_id =='' || $default_game ==''){
+    echo "<script>window.location = '404.php';</script>";
+    exit;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -100,23 +82,88 @@ if (isset($_POST['single_submit']) && isset($_SESSION['usr_id']) && $_SESSION['u
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>Single Ank Matka Play Dashboard</title>
+    <title>Single Ank - Jio Games</title>
     
     <?php include("include/head.php"); ?>
+    <style>
+        /* Page Specific Modern Styles */
+        .market-hero-card { 
+            background: var(--primary-gradient); 
+            padding: 25px 20px; 
+            border-radius: 20px; 
+            margin: 10px 0 20px; 
+            color: white; 
+            text-align: center; 
+            box-shadow: 0 8px 20px rgba(0,68,187,0.15); 
+            position: relative; 
+            overflow: hidden; 
+        }
+        .market-hero-card::after { 
+            content: ''; 
+            position: absolute; 
+            right: -15px; 
+            top: -15px; 
+            width: 80px; 
+            height: 80px; 
+            background: rgba(255,255,255,0.08); 
+            border-radius: 50%; 
+        }
+        .market-name { font-size: 20px; font-weight: 800; margin: 0 0 8px; text-transform: uppercase; color: #fff !important; }
+        .market-date { font-size: 11px; opacity: 0.9; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+
+        .section-label { font-size: 13px; font-weight: 800; color: #2d3748; margin: 20px 0 12px; text-transform: uppercase; display: block; border-left: 4px solid var(--primary-blue); padding-left: 10px; }
+
+        .amt-selector-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 20px; }
+        .amt-card { 
+            background: #fff; 
+            border-radius: 12px; 
+            padding: 10px 5px; 
+            text-align: center; 
+            border: 2px solid transparent; 
+            box-shadow: 0 2px 6px rgba(0,0,0,0.04); 
+            cursor: pointer; 
+            transition: all 0.2s; 
+        }
+        .amt-card.active { border-color: var(--primary-blue); background: #f0f7ff; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,68,187,0.1); }
+        .amt-card p { margin: 0; font-size: 12px; font-weight: 800; color: #2d3748; }
+        .amt-card.active p { color: var(--primary-blue); }
+
+        .digit-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; padding-bottom: 20px; }
+        .digit-input-box { background: #fff; border-radius: 15px; padding: 12px 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.03); border: 1px solid rgba(0,0,0,0.05); }
+        .digit-label { display: block; font-size: 14px; font-weight: 900; color: #1a202c; margin-bottom: 5px; text-align: center; }
+        .numeric-input { 
+            width: 100%; 
+            border: 1px solid #edf2f7; 
+            background: #f8fafc; 
+            border-radius: 8px; 
+            padding: 6px; 
+            font-size: 11px; 
+            font-weight: 700; 
+            text-align: center; 
+            color: var(--primary-blue);
+            outline: none;
+        }
+
+        .summary-card { background: #fff; border-radius: 18px; padding: 20px; margin-top: 10px; box-shadow: 0 -5px 20px rgba(0,0,0,0.05); text-align: center; }
+        .total-info { font-size: 14px; font-weight: 700; color: #4a5568; margin-bottom: 15px; }
+        .total-val { font-size: 20px; font-weight: 900; color: var(--primary-blue); margin-left: 5px; }
+
+        .action-row { display: grid; grid-template-columns: 1fr 2fr; gap: 12px; }
+        .btn-reset { background: #f1f5f9; color: #64748b; font-weight: 700; padding: 12px; border-radius: 12px; border: none; font-size: 14px; }
+        .btn-submit { background: var(--primary-gradient); color: white; font-weight: 800; padding: 12px; border-radius: 12px; border: none; font-size: 14px; box-shadow: 0 4px 15px rgba(0,68,187,0.2); }
+
+        .market-dropdown { width: 100%; padding: 10px 15px; border-radius: 12px; border: 2px solid #edf2f7; font-size: 13px; font-weight: 700; color: #2d3748; background-color: #fff; margin-bottom: 15px; }
+    </style>
 </head>
 
 <body>
 
     <div class="wrapper">
-        
         <?php include("include/sidebar.php"); ?>
         <div id="content">
             <?php include("include/nav.php"); ?>
             
-            
-            <div class="container" >  
-            <div class="card-full-page tb-10">
-                
+            <div class="container pb-5">  
                 <?php
                 $games_list_qry = "SELECT * FROM `parent_games` WHERE id=? AND status=1";
 				$stmt = $con->prepare($games_list_qry);
@@ -124,224 +171,145 @@ if (isset($_POST['single_submit']) && isset($_SESSION['usr_id']) && $_SESSION['u
 				$stmt->execute();
 				$games = $stmt->get_result();
 
-				while ($row = $games->fetch_assoc()) {
+				if($row = $games->fetch_assoc()) {
                             $open_time =  $row['open_time'];
                             $close_time = $row['close_time'];
-                            $result_open_time = $row['result_open_time'];
-                            $result_close_time = $row['result_close_time'];
-                            $open_days = $row['open_days'];
-                            $game_days = explode(",", $open_days);
+                            $day = strtolower(date('D'));
+                            $game_days = explode(",", $row['open_days']);
                             
-                            $day = strtolower(date('D', strtotime(date('Y-m-d'))));
-                             
-                             $betting_open_time =strtotime(date('Y-m-d').' '.$open_time);
-                             $betting_close_time =strtotime(date('Y-m-d').' '.$close_time);
+                            $betting_open_time = strtotime(date('Y-m-d').' '.$open_time);
+                            $betting_close_time = strtotime(date('Y-m-d').' '.$close_time);
                              if(in_array($day, $game_days) && time() < $betting_open_time){
 							   $bidding_status = 1;
-                               $msg = 'Betting is Running Now';
-                               $default_bidding_date ='today';
                                $default_bidding_game ='open';
                              }elseif(in_array($day, $game_days) && time() < $betting_close_time){
 							   $bidding_status = 1;
-                               $msg = 'Betting is Running For Close';
-                               $default_bidding_date ='today';
                                $default_bidding_game ='close';
                              }else{
 							   $bidding_status = 0;
-                               $msg = 'Betting is Closed for Today';
-                               $default_bidding_date ='next_date';
                                $default_bidding_game ='';
                              }
-                             
-                             
-                             $child_open = $row['child_open_id'];
-                             $child_close = $row['child_close_id'];
-                             //$open_result = GetOpneResultByid($child_open);
-                             //$close_result = GetCloseResultByid($child_close);
-                             
-                            $game_id = $row['id'];
+                            
                             $game_name = $row['name'];
-                            $open_time = $open_time;
-                            $close_time = $close_time;
-                            $result_open_time = $result_open_time;
-                            $result_close_time = $result_close_time;
-                            //$result = $open_result.''.$close_result;
-							$bidding_status = $bidding_status;
-                            $msg =  $msg;
-                            $default_bidding_date = $default_bidding_date;
-                            $default_bidding_game = $default_bidding_game;
-                            $status = $row['status'];
-                            //$game_title = strtolower(str_replace(" ","-",$game_name));
+                            $child_open = $row['child_open_id'];
+                            $child_close = $row['child_close_id'];
+                ?>
+                
+                <!-- Market Hero Header -->
+                <div class="market-hero-card">
+                    <h1 class="market-name"><?php echo $game_name;?></h1>
+                    <p class="market-date"><?php echo date('d M Y');?> • Single Ank</p>
+                </div>
 
-                    ?>
-                <form action="" method="POST" class="myform">
-                <?php if($default_bidding_game =='open'){ ?>
-                
-                <div class="row bidoptions-list tb-10">
-                                <div class="col-6">
-                                  <a class="dateGameIDbox">
-                                      <p><?php echo date('d/m/Y');?></p>
-                                  </a>
-                                </div>
-                                
-                                <div class="col-6">
-                                    <select class="dateGameIDbox" name="game_id">
-                                        <option value="<?php echo $child_open;?>"> <?php echo get_gameNameById($child_open);?></option>
-                                        <option value="<?php echo $child_close;?>"> <?php echo get_gameNameById($child_close);?></option>
-                                    </select>
-                                </div>
-                                
-                </div>
-                
-                <?php }elseif($default_bidding_game =='close'){ ?>
-                
-                <div class="row bidoptions-list tb-10">
-                                <div class="col-6">
-                                  <a class="dateGameIDbox">
-                                      <p><?php echo date('d/m/Y');?></p>
-                                  </a>
-                                </div>
-                                
-                                <div class="col-6">
-                                    <select class="dateGameIDbox" name="game_id">
-                                        <option value="<?php echo $child_close;?>"> <?php echo get_gameNameById($child_close);?></option>
-                                    </select>
-                                </div>
-                                
-                </div>
-                
-                <?php }else{ ?>
-                
-                <div class="tbmar-40 text-center">
-                    <p>Sorry! Bidding is Close for <?php echo $game_name;?>. <br> Try again Tomorrow.</p>
-                </div>
-                
-                <?php } ?>
-                
-                
-                <?php if($bidding_status){?>
-                <div class="tb-10"><hr class="devider"></div>
-                
-                <h3 class="subheading">Select Amount</h3>
-                <div class="row bidoptions-list tb-10">
-                                <div class="col-3">
-                                  <a class="bidamtbox" id="amount_5" data="5">
-                                      <p><i class="fa fa-inr" aria-hidden="true"></i> 5</p>
-                                  </a>
-                                </div>
-                                
-                                <div class="col-3">
-                                  <a class="bidamtbox" id="amount_10" data="10">
-                                      <p><i class="fa fa-inr" aria-hidden="true"></i> 10</p>
-                                  </a>
-                                </div>
-                                
-                                <div class="col-3">
-                                  <a class="bidamtbox" id="amount_50" data="50">
-                                      <p><i class="fa fa-inr" aria-hidden="true"></i> 50</p>
-                                  </a>
-                                </div>
-                                <div class="col-3">
-                                  <a class="bidamtbox" id="amount_100" data="100">
-                                      <p><i class="fa fa-inr" aria-hidden="true"></i> 100</p>
-                                  </a>
-                                </div>
-                </div>
-                
-                
-               
-                
-                <div class="row bidoptions-list tb-10">
-                                <div class="col-3">
-                                  <a class="bidamtbox" id="amount_200" data="200">
-                                      <p><i class="fa fa-inr" aria-hidden="true"></i> 200</p>
-                                  </a>
-                                </div>
-                                
-                                <div class="col-3">
-                                  <a class="bidamtbox" id="amount_500" data="500">
-                                      <p><i class="fa fa-inr" aria-hidden="true"></i> 500</p>
-                                  </a>
-                                </div>
-                                
-                                <div class="col-3">
-                                  <a class="bidamtbox" id="amount_1000" data="1000">
-                                      <p><i class="fa fa-inr" aria-hidden="true"></i> 1000</p>
-                                  </a>
-                                </div>
-                                <div class="col-3">
-                                  <a class="bidamtbox" id="amount_5000" data="5000">
-                                      <p><i class="fa fa-inr" aria-hidden="true"></i> 5000</p>
-                                  </a>
-                                </div>
-                </div>
-                
-                <div class="tb-10"><hr class="devider"></div>
-                <h3 class="subheading">Select Digits</h3>
-                
-                <div class="row bidoptions-list tb-10">
-                    
-                    <?php 
-                    $single_digits = array('0','1','2','3','4','5','6','7','8','9');
-                    
-                    foreach($single_digits as $digit){?>
-                        
-                        <div class="col-3">
-                                    <div class="bidinputdiv">
-                                        <lable><?php echo $digit;?></lable>
-                                        <input type="text" value="" class="pointinputbox" id="single<?php echo $digit;?>" name="single<?php echo $digit;?>" readonly>
-                                    </div>
+                <form action="" method="POST" id="bidForm">
+                    <input type="hidden" name="gid" value="<?php echo $child_game_id;?>">
+                    <input type="hidden" name="pgid" value="<?php echo $parent_game_id;?>">
+                    <input type="hidden" name="dgame" value="<?php echo $default_game;?>">
+                    <input type="hidden" id="total_point" name="total_point" value="0">
+                    <input type="hidden" id="selected_amount" value="">
+
+                    <?php if($bidding_status){?>
+                        <div class="form-group mb-4">
+                            <span class="section-label">Session Selection</span>
+                            <select class="market-dropdown" name="game_id">
+                                <?php if($default_bidding_game == 'open'){ ?>
+                                    <option value="<?php echo $child_open;?>">Open Session</option>
+                                    <option value="<?php echo $child_close;?>">Close Session</option>
+                                <?php } else { ?>
+                                    <option value="<?php echo $child_close;?>">Close Session</option>
+                                <?php } ?>
+                            </select>
                         </div>
-                                
+
+                        <span class="section-label">1. Select Points</span>
+                        <div class="amt-selector-grid">
+                            <?php $amts = [5, 10, 50, 100, 200, 500, 1000, 5000]; 
+                            foreach($amts as $a){ ?>
+                                <div class="amt-card" data-val="<?php echo $a;?>">
+                                    <p>₹<?php echo $a;?></p>
+                                </div>
+                            <?php } ?>
+                        </div>
+
+                        <span class="section-label">2. Tap Digits to Place Bid</span>
+                        <div class="digit-grid">
+                            <?php for($i=0; $i<=9; $i++){ ?>
+                                <div class="digit-input-box digit-box-clickable" data-digit="<?php echo $i;?>">
+                                    <span class="digit-label"><?php echo $i;?></span>
+                                    <input type="text" class="numeric-input" id="single<?php echo $i;?>" name="single<?php echo $i;?>" value="" readonly>
+                                </div>
+                            <?php } ?>
+                        </div>
+
+                        <div class="summary-card">
+                            <div class="total-info">Total Bidding Points: <span class="total-val" id="total_display">0</span></div>
+                            <div class="action-row">
+                                <button type="reset" class="btn-reset" onclick="resetBids()">Reset</button>
+                                <button type="submit" name="single_submit" class="btn-submit">Submit Bid</button>
+                            </div>
+                        </div>
+
+                    <?php } else { ?>
+                        <div class="closed-message-card">
+                            <div class="closed-icon"><i class="fa fa-lock"></i></div>
+                            <h2 class="closed-title">Bidding Closed</h2>
+                            <p class="closed-text">We are sorry, betting is closed for today. Please try again tomorrow!</p>
+                        </div>
                     <?php } ?>
-                    
-                               
-                                
-
-                </div>
-                <input type="hidden" id="total_point" name="total_point" value="">
-                <input type="hidden" id="selected_amount" value="">
-                
-                <input type="hidden" name="gid" value="<?php echo $child_game_id;?>">
-                <input type="hidden" name="pgid" value="<?php echo $parent_game_id;?>">
-                <input type="hidden" name="dgame" value="<?php echo $default_game;?>">
-                
-                
-                
-                
-                <div class="tbmar-20 text-center">
-                    <p>Total Points : <a id="total_point2">0</a></p>
-                </div>
-                
-                <div class="row bidoptions-list tb-10">
-                                <div class="col-6"> 
-                                  <button class="btn btn-light btn-streched" onclick = "resetjsvar();" type="reset">Reset</button>
-                                </div>
-                                
-                                <div class="col-6">
-                                <button class="btn btn-theme btn-streched" type="submit" name="single_submit">Submit</button>
-                                </div>
-                                
-                </div>
-                
-                <?php } ?>
-                
                 </form>
-                <?php 
-				} 
-				$stmt->close();
-				?>
-                        
-
+                
+                <?php } $stmt->close(); ?>
             </div>
-            </div>
-            
-            
         </div>
     </div>
     
     <?php include("include/footer.php"); ?>
 
+    <script>
+        document.querySelectorAll('.amt-card').forEach(card => {
+            card.addEventListener('click', function() {
+                document.querySelectorAll('.amt-card').forEach(c => c.classList.remove('active'));
+                this.classList.add('active');
+                document.getElementById('selected_amount').value = this.getAttribute('data-val');
+            });
+        });
+
+        document.querySelectorAll('.digit-box-clickable').forEach(box => {
+            box.addEventListener('click', function() {
+                const amt = document.getElementById('selected_amount').value;
+                if(!amt) {
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Select Amount First',
+                        text: 'Please tap on a point value before selecting digits.',
+                        confirmButtonColor: '#0044bb'
+                    });
+                    return;
+                }
+                const digit = this.getAttribute('data-digit');
+                const input = document.getElementById('single' + digit);
+                input.value = (input.value === amt) ? "" : amt; // Toggle logic
+                calculateTotal();
+            });
+        });
+
+        function calculateTotal() {
+            let total = 0;
+            for(let i=0; i<=9; i++) {
+                const val = parseInt(document.getElementById('single' + i).value) || 0;
+                total += val;
+            }
+            document.getElementById('total_point').value = total;
+            document.getElementById('total_display').innerText = total;
+        }
+
+        function resetBids() {
+            document.querySelectorAll('.numeric-input').forEach(input => input.value = "");
+            document.querySelectorAll('.amt-card').forEach(c => c.classList.remove('active'));
+            document.getElementById('selected_amount').value = "";
+            calculateTotal();
+        }
+    </script>
 </body>
 
 </html>

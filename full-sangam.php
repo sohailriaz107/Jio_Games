@@ -10,99 +10,62 @@ session_start();
 	$default_game = filter_var($_GET['dgame'], FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
 	
 if (isset($_POST['single_submit']) && isset($_SESSION['usr_id']) && $_SESSION['usr_id'] != "") {
-	
-	if (get_SettingValue('pause_main_market_bidding_website')) {
-    	echo "<script>alert('Bidding are Stopped Temporarily !!!')</script>";
-        echo "<script>window.location = 'index.php';</script>";
-    	exit;	
-    }
     
-    if (0) {
-        echo "<script>alert('Kindly use our Android App for bidding. Thanks for more info Contact Admin sir.')</script>";
+    if (get_SettingValue('pause_main_market_bidding_website')) {
+        echo "<script>alert('Bidding are Stopped Temporarily !!!')</script>";
         echo "<script>window.location = 'index.php';</script>";
         exit;
     }
-	
-	$user_id = $_SESSION['usr_id'];
-	
-	// Validate and sanitize input
-	$game_id = filter_var($_POST['game_id'], FILTER_SANITIZE_NUMBER_INT);
-	$open_digit = filter_var($_POST['open_digit'], FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
-	$close_digit = filter_var($_POST['close_digit'], FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
-	$amount = filter_var($_POST['amount'], FILTER_SANITIZE_NUMBER_INT);
-	
-	// Check if inputs are valid
-	if ($game_id === false || $open_digit === false || $close_digit === false || $amount === false) {
-	    echo "<script>window.location = 'full-sangam.php?invalid_input';</script>";
-	    exit;
-	}
-	
-	// Calculate total point
-	$total_point = $amount;
-	
-	$child_game_id = filter_var($_POST['gid'], FILTER_SANITIZE_NUMBER_INT);
-	$parent_game_id = filter_var($_POST['pgid'], FILTER_SANITIZE_NUMBER_INT);
-	$default_game = filter_var($_POST['dgame'], FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
-	
-	$get_parameters = "gid=$child_game_id&pgid=$parent_game_id&dgame=$default_game";
-	
-	$date = date('Y-m-d');
-	$time = date('h:i:s A');
-	
-	$game_time = get_gameTimeById($game_id);
-	$date_time = $date . " " . $game_time;
-	$market_time = strtotime($date_time);
-	
-	if (get_lastBalance($user_id) < $total_point) {
-	    echo "<script>window.location = 'full-sangam.php?insufficientbalance&$get_parameters';</script>";
-	    exit;
-	} elseif (time() >= $market_time) {
-	    echo "<script>window.location = 'full-sangam.php?invalid_date&$get_parameters';</script>";
-	    exit;
-	} else {
-	    $fs_digit = $open_digit . '-' . $close_digit;
-	    $digit_length = strlen($fs_digit);
-	    
-	    if ($amount >= 5 && $digit_length == 7) {
-	        $balance = get_lastBalance($user_id);
-	        
-	        if ($balance >= $amount) {
-	            $new_balance = $balance - $amount;
-	            
-	            // Prepare and execute the statement to insert transaction
-	            $stmt = mysqli_prepare($con, "INSERT INTO user_transaction (user_id, game_id, game_type, digit, date, time, amount, type, debit_credit, balance) VALUES (?, ?, 'full_sangam', ?, ?, ?, ?, 'bid', 'debit', ?)");
-	            mysqli_stmt_bind_param($stmt, "iissssi", $user_id, $game_id, $fs_digit, $date, $time, $amount, $new_balance);
-	            mysqli_stmt_execute($stmt);
-	            
-	            if (mysqli_stmt_affected_rows($stmt) > 0) {
-	                UpdateBalanceInUserTable($user_id, $new_balance);
-	                
-	                // Update last_bid_placed_on for the user
-	                $stmt_update = mysqli_prepare($con, "UPDATE users SET last_bid_placed_on = ? WHERE id = ?");
-	                mysqli_stmt_bind_param($stmt_update, "si", $date, $user_id);
-	                mysqli_stmt_execute($stmt_update);
-	                mysqli_stmt_close($stmt_update);
-	                
-	                echo "<script>window.location = 'full-sangam.php?bidplacedsuccessfully&$get_parameters';</script>";
-	                exit;
-	            }
-	        }
-	    }
-	    
-	    echo "<script>window.location = 'full-sangam.php?bidfailed&$get_parameters';</script>";
-	    exit;
-	}
+    
+    $user_id = filter_var($_SESSION['usr_id'], FILTER_SANITIZE_NUMBER_INT);
+    $game_id = filter_var($_POST['game_id'], FILTER_SANITIZE_NUMBER_INT);
+    $open_digit = filter_var($_POST['open_digit'], FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+    $close_digit = filter_var($_POST['close_digit'], FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+    $amount = filter_var($_POST['amount'], FILTER_SANITIZE_NUMBER_INT);
+    
+    $child_game_id = filter_var($_POST['gid'], FILTER_SANITIZE_NUMBER_INT);
+    $parent_game_id = filter_var($_POST['pgid'], FILTER_SANITIZE_NUMBER_INT);
+    $default_game = filter_var($_POST['dgame'], FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+    
+    $get_parameters = "gid=$child_game_id&pgid=$parent_game_id&dgame=$default_game";
+    
+    $date = date('Y-m-d');
+    $time = date('h:i:s A');
+    
+    $game_time = get_gameTimeById($game_id);
+    $date_time = $date . " " . $game_time;
+    $market_time = strtotime($date_time);
+    
+    if (get_lastBalance($user_id) < $amount) {
+        echo "<script>window.location = 'full-sangam.php?insufficientbalance&" . $get_parameters . "';</script>";
+    } elseif (time() >= $market_time) {
+        echo "<script>window.location = 'full-sangam.php?invalid_date&" . $get_parameters . "';</script>";
+    } else {
+        $fs_digit = $open_digit . '-' . $close_digit;
+        if ($amount >= 5 && strlen($open_digit) == 3 && strlen($close_digit) == 3) {
+            $balance = get_lastBalance($user_id);
+            if ($balance >= $amount) {
+                $new_balance = $balance - $amount;
+                $stmt = $con->prepare("INSERT INTO user_transaction (user_id, game_id, game_type, digit, date, time, amount, type, debit_credit, balance) VALUES (?, ?, 'full_sangam', ?, ?, ?, ?, 'bid', 'debit', ?)");
+                $stmt->bind_param("iissssi", $user_id, $game_id, $fs_digit, $date, $time, $amount, $new_balance);
+                $stmt->execute();
+                $stmt->close();
+                UpdateBalanceInUserTable($user_id, $new_balance);
+                
+                $sql = "UPDATE users SET last_bid_placed_on = ? WHERE id = ?";
+                $stmt = $con->prepare($sql);
+                $stmt->bind_param("si", $date, $user_id);
+                $stmt->execute();
+                $stmt->close();
+                
+                echo "<script>window.location = 'full-sangam.php?bidplacedsuccessfully&" . $get_parameters . "';</script>";
+                exit;
+            }
+        }
+        echo "<script>window.location = 'full-sangam.php?bidfailed&" . $get_parameters . "';</script>";
+        exit;
+    }
 }
-
-
-	
-	
-	if($child_game_id =='' || $parent_game_id =='' || $default_game ==''){
-	    echo "<script>window.location = '404.php';</script>";
-	    exit;
-	}
-	
-	
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -112,23 +75,43 @@ if (isset($_POST['single_submit']) && isset($_SESSION['usr_id']) && $_SESSION['u
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>Full Sangam Matka Play Dashboard</title>
-    <meta name="description" content="Play full sangam satta matka online and win big money, india's largest and trusted satta matka play application, Fastest withdrawal and full rate">
+    <title>Full Sangam - Jio Games</title>
+    
     <?php include("include/head.php"); ?>
+    <style>
+        /* Modern Premium Styles */
+        .market-hero-card { background: var(--primary-gradient); padding: 25px 20px; border-radius: 20px; margin: 10px 0 20px; color: white; text-align: center; box-shadow: 0 8px 20px rgba(0,68,187,0.15); position: relative; overflow: hidden; }
+        .market-hero-card::after { content: ''; position: absolute; right: -15px; top: -15px; width: 80px; height: 80px; background: rgba(255,255,255,0.08); border-radius: 50%; }
+        .market-name { font-size: 20px; font-weight: 800; margin: 0 0 8px; text-transform: uppercase; color: #fff !important; }
+        .market-date { font-size: 11px; opacity: 0.9; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+
+        .section-label { font-size: 13px; font-weight: 800; color: #2d3748; margin: 25px 0 15px; text-transform: uppercase; display: block; border-left: 4px solid var(--primary-blue); padding-left: 10px; }
+
+        .form-section { background: #fff; border-radius: 18px; padding: 25px 20px; margin-bottom: 20px; box-shadow: 0 2px 12px rgba(0,0,0,0.03); border: 1px solid rgba(0,0,0,0.05); }
+        
+        .input-group-row { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px; }
+        .input-box { display: flex; flex-direction: column; }
+        .input-box.full-width { grid-column: span 2; }
+        .input-box label { font-size: 11px; font-weight: 700; color: #64748b; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .form-control-modern { border: 2px solid #f1f5f9; background: #f8fafc; border-radius: 14px; padding: 14px 15px; font-size: 14px; font-weight: 700; color: #2d3748; outline: none; width: 100%; transition: all 0.2s; }
+        .form-control-modern:focus { border-color: var(--primary-blue); background: #fff; box-shadow: 0 0 0 4px rgba(0,68,187,0.05); }
+
+        .market-dropdown { width: 100%; padding: 14px 15px; border-radius: 14px; border: 2px solid #edf2f7; font-size: 14px; font-weight: 700; color: #2d3748; background-color: #fff; margin-bottom: 20px; }
+
+        .action-row { display: grid; grid-template-columns: 1fr 2fr; gap: 12px; margin-top: 10px; }
+        .btn-reset { background: #f1f5f9; color: #64748b; font-weight: 700; padding: 16px; border-radius: 16px; border: none; font-size: 14px; }
+        .btn-submit { background: var(--primary-gradient); color: white; font-weight: 800; padding: 16px; border-radius: 16px; border: none; font-size: 14px; box-shadow: 0 4px 15px rgba(0,68,187,0.2); }
+    </style>
 </head>
 
 <body>
 
     <div class="wrapper">
-        
         <?php include("include/sidebar.php"); ?>
         <div id="content">
             <?php include("include/nav.php"); ?>
             
-            
-            <div class="container" >  
-            <div class="card-full-page tb-10">
-                
+            <div class="container pb-4">  
                 <?php
                 $games_list_qry = "SELECT * FROM `parent_games` WHERE id=? AND status=1";
 				$stmt = $con->prepare($games_list_qry);
@@ -136,151 +119,76 @@ if (isset($_POST['single_submit']) && isset($_SESSION['usr_id']) && $_SESSION['u
 				$stmt->execute();
 				$games = $stmt->get_result();
 
-				while ($row = $games->fetch_assoc()) {
+				if($row = $games->fetch_assoc()) {
                             $open_time =  $row['open_time'];
-                            $close_time = $row['close_time'];
-                            $result_open_time = $row['result_open_time'];
-                            $result_close_time = $row['result_close_time'];
-                            $open_days = $row['open_days'];
-                            $game_days = explode(",", $open_days);
-                            
-                            $day = strtolower(date('D', strtotime(date('Y-m-d'))));
-                             
-                             $betting_open_time =strtotime(date('Y-m-d').' '.$open_time);
-                             $betting_close_time =strtotime(date('Y-m-d').' '.$close_time);
+                            $day = strtolower(date('D'));
+                            $game_days = explode(",", $row['open_days']);
+                            $betting_open_time = strtotime(date('Y-m-d').' '.$open_time);
                              if(in_array($day, $game_days) && time() < $betting_open_time){
 							   $bidding_status = 1;
-                               $msg = 'Betting is Running Now';
-                               $default_bidding_date ='today';
-                               $default_bidding_game ='open';
-                             }elseif(in_array($day, $game_days) && time() < $betting_close_time){
-							   $bidding_status = 1;
-                               $msg = 'Betting is Running For Close';
-                               $default_bidding_date ='today';
-                               $default_bidding_game ='close';
                              }else{
 							   $bidding_status = 0;
-                               $msg = 'Betting is Closed for Today';
-                               $default_bidding_date ='next_date';
-                               $default_bidding_game ='';
                              }
-                             
-                             
-                             $child_open = $row['child_open_id'];
-                             $child_close = $row['child_close_id'];
-                             //$open_result = GetOpneResultByid($child_open);
-                             //$close_result = GetCloseResultByid($child_close);
-                             
-                            $game_id = $row['id'];
                             $game_name = $row['name'];
-                            $open_time = $open_time;
-                            $close_time = $close_time;
-                            $result_open_time = $result_open_time;
-                            $result_close_time = $result_close_time;
-                            //$result = $open_result.''.$close_result;
-							$bidding_status = $bidding_status;
-                            $msg =  $msg;
-                            $default_bidding_date = $default_bidding_date;
-                            $default_bidding_game = $default_bidding_game;
-                            $status = $row['status'];
-                            //$game_title = strtolower(str_replace(" ","-",$game_name));
-
-                    ?>
-                <form action="" method="POST" class="myform" autocomplete="off">
-                <?php if($default_bidding_game =='open'){ ?>
+                            $child_open = $row['child_open_id'];
+                ?>
                 
-                <div class="row bidoptions-list tb-10">
-                                <div class="col-6">
-                                  <a class="dateGameIDbox">
-                                      <p><?php echo date('d/m/Y');?></p>
-                                  </a>
-                                </div>
-                                
-                                <div class="col-6">
-                                    <select class="dateGameIDbox" name="game_id">
-                                        <option value="<?php echo $child_open;?>"> <?php echo get_gameNameById($child_open);?></option>
-                                    </select>
-                                </div>
-                                
-                </div>
-                
-                <?php }else{ ?>
-                
-                <div class="tbmar-40 text-center">
-                    <p>Sorry! Bidding is Close for <?php echo $game_name;?>. <br> Try again Tomorrow.</p>
-                </div>
-                
-                <?php } ?>
-                
-                
-                <?php if($bidding_status){?>
-                <div class="tb-10"><hr class="devider"></div>
-
-                <h3 class="subheading">Play Full Sangam</h3>
-                
-                <div class="row bidoptions-list tb-10">
-                    
-                <div class="col-4" style="padding-right: 5px;padding-left: 5px;">
-                                    <div class="bidinputdiv">
-                                        <lable>Open Patti</lable>
-                                        <input type="number" min="000" max="999" placeholder="000-9999" name="open_digit" style="padding: 10px 5px;cursor: text;" required>
-                                    </div>
-                </div>
-                <div class="col-4" style="padding-right: 5px;padding-left: 5px;">
-                                    <div class="bidinputdiv">
-                                        <lable>Close Patti</lable>
-                                        <input type="number" min="000" max="999" placeholder="000-999" name="close_digit" style="padding: 10px 5px;cursor: text;" required>
-                                    </div>
-                </div>
-                
-                <div class="col-4" style="padding-right: 5px;padding-left: 5px;">
-                                    <div class="bidinputdiv">
-                                        <lable>Amount</lable>
-                                        <input type="number"  min="5" name="amount" style="padding: 10px 5px;cursor: text;" required>
-                                    </div>
+                <!-- Market Hero -->
+                <div class="market-hero-card">
+                    <h1 class="market-name"><?php echo $game_name;?></h1>
+                    <p class="market-date"><?php echo date('d M Y');?> • Full Sangam</p>
                 </div>
 
-                </div>
-                
-                
-                
-                <input type="hidden" name="gid" value="<?php echo $child_game_id;?>">
-                <input type="hidden" name="pgid" value="<?php echo $parent_game_id;?>">
-                <input type="hidden" name="dgame" value="<?php echo $default_game;?>">
-                
-                
-                
-                <br><br><br>
-                
-                <div class="row bidoptions-list tb-10">
-                                <div class="col-6"> 
-                                  <button class="btn btn-light btn-streched" onclick = "resetjsvar();" type="reset">Reset</button>
-                                </div>
-                                
-                                <div class="col-6">
-                                <button class="btn btn-theme btn-streched" type="submit" name="single_submit">Submit</button>
-                                </div>
-                                
-                </div>
-                
-                <?php } ?>
-                
-                </form>
-                <?php 
-				} 
-				$stmt->close();
-				?>
+                <form action="" method="POST" id="bidForm" autocomplete="off">
+                    <input type="hidden" name="gid" value="<?php echo $child_game_id;?>">
+                    <input type="hidden" name="pgid" value="<?php echo $parent_game_id;?>">
+                    <input type="hidden" name="dgame" value="<?php echo $default_game;?>">
+
+                    <?php if($bidding_status){?>
+                        <span class="section-label">Session Selection</span>
+                        <select class="market-dropdown" name="game_id">
+                            <option value="<?php echo $child_open;?>">Full Sangam Session</option>
+                        </select>
+
+                        <span class="section-label">Fill Your Bid Details</span>
                         
+                        <div class="form-section">
+                            <div class="input-group-row">
+                                <div class="input-box">
+                                    <label>Open Patti</label>
+                                    <input type="number" name="open_digit" min="000" max="999" placeholder="000-999" class="form-control-modern" required>
+                                </div>
+                                <div class="input-box">
+                                    <label>Close Patti</label>
+                                    <input type="number" name="close_digit" min="000" max="999" placeholder="000-999" class="form-control-modern" required>
+                                </div>
+                                <div class="input-box full-width">
+                                    <label>Bid Amount</label>
+                                    <input type="number" name="amount" min="5" placeholder="Enter amount (min ₹5)" class="form-control-modern" required>
+                                </div>
+                            </div>
+                        </div>
 
+                        <div class="action-row">
+                            <button type="reset" class="btn-reset">Reset</button>
+                            <button type="submit" name="single_submit" class="btn-submit">Submit Full Sangam</button>
+                        </div>
+
+                    <?php } else { ?>
+                        <div class="closed-message-card">
+                            <div class="closed-icon"><i class="fa fa-lock"></i></div>
+                            <h2 class="closed-title">Bidding Closed</h2>
+                            <p class="closed-text">Bidding for Full Sangam is currently closed. Please check back tomorrow!</p>
+                        </div>
+                    <?php } ?>
+                </form>
+                
+                <?php } $stmt->close(); ?>
             </div>
-            </div>
-            
-            
         </div>
     </div>
     
     <?php include("include/footer.php"); ?>
-
 </body>
 
 </html>
