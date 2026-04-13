@@ -358,15 +358,15 @@ if (empty($lat) || empty($lon)) {
           </div>
     
           <!-- Modal body -->
-          <div class="modal-body" style="padding: 25px;">
-            <div style="display: flex; align-items: center; gap: 20px;">
-                <img src="assets/img/app-home.webp" style="width: 140px; height: auto; border-radius: 15px; box-shadow: 0 8px 20px rgba(0,0,0,0.15);">
-                <div>
-                    <p style="font-size: 20px; font-weight: 900; color: #0044bb; margin-bottom: 8px;">DOWNLOAD OUR APP</p>
-                    <p style="line-height: 1.5; font-size: 14px; color: #4b5563; margin-bottom: 20px;">Enjoy advanced features and options by downloading our Android app. Access all the exciting features anytime, anywhere!</p>
+          <div class="modal-body" style="padding: 30px 20px; text-align: center;">
+            <div style="display: flex; flex-direction: column; align-items: center; gap: 15px;">
+                <img src="assets/img/app-home.webp" style="width: 120px; height: auto; border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.15);">
+                <div style="width: 100%;">
+                    <p style="font-size: 22px; font-weight: 900; color: #0044bb; margin-bottom: 8px; letter-spacing: 0.5px;">DOWNLOAD OUR APP</p>
+                    <p style="line-height: 1.6; font-size: 14px; color: #555; margin-bottom: 25px; padding: 0 10px;">Enjoy advanced features and options by downloading our Android app. Access all the exciting features anytime, anywhere!</p>
                     <a href="https://jiogames.app/apk/JioGames_V102.apk" 
-                       style="display: inline-block !important; background: #0044bb !important; background-image: linear-gradient(135deg, #0044bb, #0d6efd) !important; color: #ffffff !important; padding: 12px 24px !important; border: none !important; border-radius: 10px !important; cursor: pointer !important; text-decoration: none !important; font-weight: 700 !important; box-shadow: 0 4px 15px rgba(0, 68, 187, 0.4) !important;">
-                        <i class="fa fa-download"></i> Download Now
+                       style="display: block; width: 100%; background: linear-gradient(135deg, #0044bb, #0d6efd); color: #ffffff; padding: 14px 20px; border-radius: 12px; text-decoration: none; font-weight: 800; font-size: 16px; box-shadow: 0 8px 20px rgba(0, 68, 187, 0.3); text-transform: uppercase; letter-spacing: 1px;">
+                        <i class="fa fa-download" style="margin-right: 5px; font-size: 18px;"></i> Download
                     </a>
                 </div>
             </div>
