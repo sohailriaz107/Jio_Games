@@ -273,7 +273,14 @@ function get_ChildOpen($id) {
 function get_StarlineResult($id) {
     global $con;
     $ank =0;
-    $today = date('Y-m-d');
+    
+    // Show back date result before morning 8
+    if (date('H') < 8) {
+        $today = date('Y-m-d', strtotime('-1 day'));
+    } else {
+        $today = date('Y-m-d');
+    }
+    
     $stmt = $con->prepare("SELECT digit FROM starline_result WHERE game_id=? AND date=? LIMIT 1");
     $stmt->bind_param("is", $id, $today);
     $stmt->execute();
@@ -294,6 +301,7 @@ function get_StarlineResult($id) {
 				return '***-*';
 			}
 		}
+    return '***-*';
 }
 
 function get_Starlinetime($id) {

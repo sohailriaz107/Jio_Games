@@ -28,40 +28,59 @@ session_start();
         <div id="content">
             <?php include("include/nav.php"); ?>
             
-            <div class="container" > 
-            <div class="tb-10">
+            <div class="container py-4">
                 
-                <div class="row game-list-inner">
-                                <div class="col-12">
-                                  <a href="<?php echo LIVE_CHAT_URL;?>" class="mplist" ><i class="fa fa-comments"></i> Live Chat</a>
-                                </div>
+                <div class="text-center mb-4">
+                    <h2 style="font-weight: 800; color: #2b3648; font-size: 24px; margin-bottom: 5px;">Support Center</h2>
+                    <p style="color: #64748b; font-size: 14px;">Contact our experts for instant help</p>
                 </div>
-				
-                
-                <div class="row game-list-inner">
-                                <div class="col-12">
-                                  <a href="https://wa.me/<?php echo get_SettingValue('PWA_whatsapp1');?>" class="mplist" ><i class="fa fa-whatsapp"></i> Whatsapp Chat (Add Fund)</a>
-                                </div>
-                </div>
-				
-				<div class="row game-list-inner">
-                                <div class="col-12">
-                                  <a href="https://wa.me/<?php echo get_SettingValue('PWA_whatsapp2');?>" class="mplist" ><i class="fa fa-whatsapp"></i> Whatsapp Chat (Other Issues)</a>
-                                </div>
-                </div>
-				
-				<div class="row game-list-inner">
-                                <div class="col-12">
-                                  <a href="<?php echo TELEGRAM_URL;?>" class="mplist" ><i class="fa fa-telegram"></i> Telegram Chat</a>
-                                </div>
-                </div>
-                        
-            </div>
-			
-			<div class="tbmar-40 text-center">
-                    <span>Please use <b>Telegram</b> for a secure and safe chat experience.  </span>
 
+                <!-- LIVE CHAT CARD -->
+                <a href="<?php echo LIVE_CHAT_URL;?>" class="premium-support-card chat">
+                    <div class="support-icon-box"><i class="fa fa-comments"></i></div>
+                    <div class="support-info">
+                        <span class="support-title">Live Chat Support</span>
+                        <span class="support-subtitle">Connect with our agents instantly</span>
+                    </div>
+                    <div class="support-arrow"><i class="fa fa-chevron-right"></i></div>
+                </a>
+
+                <!-- WHATSAPP CARDS -->
+                <a href="https://wa.me/<?php echo get_SettingValue('PWA_whatsapp1');?>" class="premium-support-card wa">
+                    <div class="support-icon-box"><i class="fa fa-whatsapp"></i></div>
+                    <div class="support-info">
+                        <span class="support-title">WhatsApp Support</span>
+                        <span class="support-subtitle">Billing & Fund Addition Issues</span>
+                    </div>
+                    <div class="support-arrow"><i class="fa fa-chevron-right"></i></div>
+                </a>
+
+                <a href="https://wa.me/<?php echo get_SettingValue('PWA_whatsapp2');?>" class="premium-support-card wa">
+                    <div class="support-icon-box"><i class="fa fa-whatsapp"></i></div>
+                    <div class="support-info">
+                        <span class="support-title">WhatsApp Support</span>
+                        <span class="support-subtitle">Account & Other Queries</span>
+                    </div>
+                    <div class="support-arrow"><i class="fa fa-chevron-right"></i></div>
+                </a>
+
+                <!-- TELEGRAM CARD -->
+                <a href="<?php echo TELEGRAM_URL;?>" class="premium-support-card tg">
+                    <div class="support-icon-box"><i class="fa fa-telegram"></i></div>
+                    <div class="support-info">
+                        <span class="support-title">Telegram Chat</span>
+                        <span class="support-subtitle">Highly Secure & Encrypted Chat</span>
+                    </div>
+                    <div class="support-arrow"><i class="fa fa-chevron-right"></i></div>
+                </a>
+
+                <!-- SECURITY NOTICE -->
+                <div class="support-notice-banner">
+                    <i class="fa fa-shield"></i>
+                    <span>Please use <b>Telegram</b> for a highly secure and encrypted chat experience.</span>
                 </div>
+
+            </div>
             </div> 
       
             

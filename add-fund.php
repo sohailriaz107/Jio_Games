@@ -267,10 +267,10 @@ $stmt->close();
                 <div class="addfund-hero">
                     <h2><i class="fa fa-plus-circle"></i> Add Funds</h2>
                     <p>Top up your wallet instantly via UPI</p>
-                    <div class="wallet-pill">
+                    <!-- <div class="wallet-pill">
                         <i class="fa fa-inr"></i>
                         Balance: <?php echo get_lastBalance($_SESSION['usr_id']); ?>
-                    </div>
+                    </div> -->
                 </div>
 
                 <!-- Main Card -->

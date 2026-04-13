@@ -117,8 +117,6 @@ include("include/functions.php");
                     $game_name = $row['name'];
                     $result = get_StarlineResult($game_id);
                     $startline_time = strtotime(date('Y-m-d').' '.$row['time']);
-                    
-                    if(empty($result) || $result == '***-*') $result = "Wait...";
                 ?>    
                     <div class="starline-game-card">
                         <div class="sl-game-info">

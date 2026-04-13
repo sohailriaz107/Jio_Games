@@ -44,6 +44,10 @@ session_start();
                 <div class="premium-game-card" style="width: 100%; padding: 15px; margin-bottom: 20px;">
                      <a href="change-password.php" class="mplist" style="text-decoration:none; color:#2d3748; font-weight:600; display:flex; align-items:center; width:100%;"><i class="fa fa-key" style="margin-right:15px; color:var(--primary-light); font-size:22px;"></i> Change Password</a>
                 </div>
+
+                <div class="premium-game-card" style="width: 100%; padding: 15px; margin-bottom: 20px; border-left: 4px solid #f5365c;">
+                     <a href="logout.php" class="mplist" style="text-decoration:none; color:#f5365c; font-weight:700; display:flex; align-items:center; width:100%;"><i class="fa fa-sign-out" style="margin-right:15px; color:#f5365c; font-size:22px;"></i> Logout Account</a>
+                </div>
                         
             </div>
             </div>

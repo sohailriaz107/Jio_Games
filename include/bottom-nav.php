@@ -69,18 +69,12 @@
         <i class="fa fa-home"></i>
         <span>Home</span>
     </a>
-    <a href="fund-history.php" class="bottom-nav-item <?php echo (basename($_SERVER['PHP_SELF']) == 'fund-history.php') ? 'active' : ''; ?>">
+    <a href="add-fund.php" class="bottom-nav-item <?php echo (basename($_SERVER['PHP_SELF']) == 'add-fund.php') ? 'active' : ''; ?>">
+        <i class="fa fa-plus-circle"></i>
+        <span>Fund</span>
+    </a>
+    <a href="bidding-history.php" class="bottom-nav-item <?php echo (basename($_SERVER['PHP_SELF']) == 'bidding-history.php' || basename($_SERVER['PHP_SELF']) == 'bidding-history-starline.php') ? 'active' : ''; ?>">
         <i class="fa fa-history"></i>
-        <span>History</span>
-    </a>
-    <a href="add-fund.php" class="bottom-nav-item center-action">
-        <div class="icon-circle">
-            <i class="fa fa-plus"></i>
-        </div>
-        <span style="margin-top: 5px;">Add Fund</span>
-    </a>
-    <a href="bidding-history.php" class="bottom-nav-item <?php echo (basename($_SERVER['PHP_SELF']) == 'bidding-history.php') ? 'active' : ''; ?>">
-        <i class="fa fa-trophy"></i>
         <span>Bids</span>
     </a>
     <a href="my-profile.php" class="bottom-nav-item <?php echo (basename($_SERVER['PHP_SELF']) == 'my-profile.php') ? 'active' : ''; ?>">

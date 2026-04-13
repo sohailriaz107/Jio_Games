@@ -1,16 +1,9 @@
 <nav class="navbar top-app-bar" style="background: var(--primary-light); padding: 12px 15px; position: sticky; top: 0; z-index: 1040; box-shadow: 0 3px 15px rgba(0,0,0,0.08);">
     <div class="container-fluid d-flex justify-content-between align-items-center" style="position: relative;">
         
-        <!-- Left: Hamburger -->
+        <!-- Left: App Brand -->
         <div class="d-flex align-items-center" style="z-index: 2;">
-            <a href="#" data-toggle="modal" data-target="#moreMenuModal" style="color: white; font-size: 24px; line-height: 1;">
-                <i class="fa fa-bars"></i>
-            </a>
-        </div>
-        
-        <!-- Center: Absolute positioning to guarantee perfect centering -->
-        <div style="position: absolute; left: 0; right: 0; top: 0; bottom: 0; display: flex; justify-content: center; align-items: center; z-index: 1; pointer-events: none;">
-            <a href="<?php echo defined('SITEURL') ? SITEURL : 'index.php'; ?>" class="app-brand" style="margin: 0 !important; padding: 0 !important; color: white; font-weight: 700; font-size: 21px; text-decoration: none; letter-spacing: 0.5px; pointer-events: auto;">
+            <a href="<?php echo defined('SITEURL') ? SITEURL : 'index.php'; ?>" class="app-brand" style="color: white; font-weight: 700; font-size: 21px; text-decoration: none; letter-spacing: 0.5px;">
                 Jio Games
             </a>
         </div>

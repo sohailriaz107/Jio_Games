@@ -25,15 +25,15 @@ session_start();
         .section-title { font-size: 16px; font-weight: 800; color: #1a202c; display: inline-block; position: relative; padding-bottom: 8px; text-align: center; }
         .section-title::after { content: ''; position: absolute; left: 50%; transform: translateX(-50%); bottom: 0; width: 40px; height: 3px; background: var(--primary-blue); border-radius: 2px; }
 
-        .rates-grid { display: grid; grid-template-columns: 1fr; gap: 15px; margin-bottom: 40px; padding: 0 10px; }
+        .rates-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 40px; padding: 0 10px; }
 
-        .rate-card { background: #fff; border-radius: 20px; padding: 25px 20px; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.03); border: 1px solid rgba(0,0,0,0.05); transition: transform 0.2s; }
+        .rate-card { background: #fff; border-radius: 15px; padding: 15px 10px; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.03); border: 1px solid rgba(0,0,0,0.05); transition: transform 0.2s; }
         .rate-card:active { transform: scale(0.98); }
 
-        .icon-container { width: 50px; height: 50px; background: #f0f7ff; border-radius: 14px; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px; color: var(--primary-blue); font-size: 22px; }
+        .icon-container { width: 40px; height: 40px; background: #f0f7ff; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin: 0 auto 10px; color: var(--primary-blue); font-size: 18px; }
         
-        .rate-name { font-size: 16px; font-weight: 800; color: #2d3748; margin-bottom: 6px; }
-        .rate-value { font-size: 14px; font-weight: 600; color: #718096; letter-spacing: 0.5px; }
+        .rate-name { font-size: 13px; font-weight: 800; color: #2d3748; margin-bottom: 4px; }
+        .rate-value { font-size: 11px; font-weight: 600; color: #718096; letter-spacing: 0.5px; }
 
         @media (min-width: 768px) {
             .rates-grid { grid-template-columns: repeat(3, 1fr); gap: 20px; }

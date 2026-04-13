@@ -147,6 +147,18 @@ if (empty($lat) || empty($lon)) {
                 .btn-timing { background: #f0f4f8; color: #666; padding: 6px; border-radius: 10px; font-size: 11px; font-weight: 600; text-align: center; }
                 .btn-play-game { background: var(--primary-blue); color: #fff; padding: 8px; border-radius: 10px; font-size: 11px; font-weight: 700; text-align: center; box-shadow: 0 4px 10px rgba(0,68,187,0.15); }
                 .btn-play-game.disabled { background: #eef2f6; color: #b0bac9; box-shadow: none; pointer-events: none; }
+                
+                /* Center Timing Modal */
+                .timing-modal.modal { padding: 0 !important; }
+                .timing-modal .modal-dialog {
+                    margin: 0;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%) !important;
+                    position: absolute;
+                    width: 90%;
+                    max-width: 400px;
+                }
             </style>
 
             <!-- Hero Image Slider -->
@@ -181,16 +193,24 @@ if (empty($lat) || empty($lon)) {
 
             <!-- Quick Action Grid -->
             <div class="quick-grid">
-                <a href="add-fund.php" class="grid-item">
-                    <div class="grid-icon"><i class="fa fa-plus-circle"></i></div>
-                    <span>Add Fund</span>
+                <a href="notifications.php" class="grid-item">
+                    <div class="grid-icon"><i class="fa fa-bell"></i></div>
+                    <span>Notifications</span>
                 </a>
                 <a href="withdraw.php" class="grid-item">
                     <div class="grid-icon"><i class="fa fa-bank"></i></div>
                     <span>Withdraw</span>
                 </a>
+                <a href="top-winner-list.php" class="grid-item">
+                    <div class="grid-icon"><i class="fa fa-trophy"></i></div>
+                    <span>Top Winners</span>
+                </a>
+                <a href="top-winner-list-starline.php" class="grid-item">
+                    <div class="grid-icon"><i class="fa fa-star" style="color: #f1c40f;"></i></div>
+                    <span>Starline Win</span>
+                </a>
                 <a href="game-rates.php" class="grid-item">
-                    <div class="grid-icon"><i class="fa fa-list-alt"></i></div>
+                    <div class="grid-icon"><i class="fa fa-bar-chart"></i></div>
                     <span>Rates</span>
                 </a>
                 <a href="support.php" class="grid-item">
@@ -201,44 +221,13 @@ if (empty($lat) || empty($lon)) {
                     <div class="grid-icon" style="color: #25D366;"><i class="fa fa-whatsapp"></i></div>
                     <span>WhatsApp</span>
                 </a>
-                <a href="<?php echo TELEGRAM_URL;?>" class="grid-item">
-                    <div class="grid-icon" style="color: #0088cc;"><i class="fa fa-send"></i></div>
-                    <span>Telegram</span>
-                </a>
-                <a href="starline-play.php" class="grid-item">
-                    <div class="grid-icon"><i class="fa fa-star" style="color: #f1c40f;"></i></div>
-                    <span>Starline</span>
-                </a>
-                <a href="my-profile.php" class="grid-item">
-                    <div class="grid-icon"><i class="fa fa-user-circle"></i></div>
-                    <span>Profile</span>
+                <a href="download-application.php" class="grid-item">
+                    <div class="grid-icon"><i class="fa fa-download"></i></div>
+                    <span>App</span>
                 </a>
             </div>
 
-            <!-- Winner Ticker (Secondary) -->
-            <div class="winner-ticker-subtle">
-                <i class="fa fa-trophy"></i>
-                <marquee scrollamount="3">
-                    <span><b>Rohan K.</b> won ₹2,450!</span>
-                    <span><b>Amit S.</b> won ₹5,000!</span>
-                    <span><b>Sunny P.</b> won ₹1,200!</span>
-                    <span><b>Priya G.</b> won ₹3,500!</span>
-                    <span><b>Deepak M.</b> won ₹4,100!</span>
-                </marquee>
-            </div>
 
-            <!-- Starline Premium Banner -->
-            <div class="starline-banner-premium">
-                <div class="starline-content">
-                    <div class="starline-head">
-                        <h4>MUMBAI STARLINE</h4>
-                        <p>Play every hour and win big with Mumbai's most trusted market.</p>
-                    </div>
-                    <a href="starline-play.php" class="btn-starline-play">
-                        <i class="fa fa-play"></i> Play Starline
-                    </a>
-                </div>
-            </div>
 
             <div class="game-section-title">Verified Matka Markets</div>
             <div class="game-cards-grid">
@@ -300,7 +289,7 @@ if (empty($lat) || empty($lon)) {
                     </div> 
 
                     <!-- Timing Modal -->
-                    <div class="modal fade" id="gameTimeModal<?php echo $game_id;?>" tabindex="-1">
+                    <div class="modal fade timing-modal" id="gameTimeModal<?php echo $game_id;?>" tabindex="-1">
                       <div class="modal-dialog modal-sm modal-dialog-centered">
                         <div class="modal-content">
                           <div class="modal-header">
@@ -373,10 +362,10 @@ if (empty($lat) || empty($lon)) {
             <div style="display: flex; align-items: center; gap: 20px;">
                 <img src="assets/img/app-home.webp" style="width: 140px; height: auto; border-radius: 15px; box-shadow: 0 8px 20px rgba(0,0,0,0.15);">
                 <div>
-                    <p style="font-size: 20px; font-weight: 900; color: #b73800; margin-bottom: 8px;">DOWNLOAD OUR APP</p>
+                    <p style="font-size: 20px; font-weight: 900; color: #0044bb; margin-bottom: 8px;">DOWNLOAD OUR APP</p>
                     <p style="line-height: 1.5; font-size: 14px; color: #4b5563; margin-bottom: 20px;">Enjoy advanced features and options by downloading our Android app. Access all the exciting features anytime, anywhere!</p>
                     <a href="https://jiogames.app/apk/JioGames_V102.apk" 
-                       style="display: inline-block; background: linear-gradient(to right, #b73800, #ff4c00); color: white; padding: 12px 24px; border: none; border-radius: 10px; cursor: pointer; text-decoration: none; font-weight: 700; box-shadow: 0 4px 15px rgba(183, 56, 0, 0.3);">
+                       style="display: inline-block !important; background: #0044bb !important; background-image: linear-gradient(135deg, #0044bb, #0d6efd) !important; color: #ffffff !important; padding: 12px 24px !important; border: none !important; border-radius: 10px !important; cursor: pointer !important; text-decoration: none !important; font-weight: 700 !important; box-shadow: 0 4px 15px rgba(0, 68, 187, 0.4) !important;">
                         <i class="fa fa-download"></i> Download Now
                     </a>
                 </div>
