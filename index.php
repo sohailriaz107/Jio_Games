@@ -148,16 +148,25 @@ if (empty($lat) || empty($lon)) {
                 .btn-play-game { background: var(--primary-blue); color: #fff; padding: 8px; border-radius: 10px; font-size: 11px; font-weight: 700; text-align: center; box-shadow: 0 4px 10px rgba(0,68,187,0.15); }
                 .btn-play-game.disabled { background: #eef2f6; color: #b0bac9; box-shadow: none; pointer-events: none; }
                 
-                /* Center Timing Modal */
-                .timing-modal.modal { padding: 0 !important; }
+                /* Center Timing Modal and Fix Positioning */
+                .timing-modal.modal { 
+                    text-align: center;
+                    padding: 0 !important;
+                }
+                .timing-modal.modal:before {
+                    content: '';
+                    display: inline-block;
+                    height: 100%;
+                    vertical-align: middle;
+                    margin-right: -4px;
+                }
                 .timing-modal .modal-dialog {
-                    margin: 0;
-                    top: 50%;
-                    left: 50%;
-                    transform: translate(-50%, -50%) !important;
-                    position: absolute;
+                    display: inline-block;
+                    text-align: left;
+                    vertical-align: middle;
                     width: 90%;
                     max-width: 400px;
+                    margin: 10px auto;
                 }
             </style>
 
@@ -193,9 +202,9 @@ if (empty($lat) || empty($lon)) {
 
             <!-- Quick Action Grid -->
             <div class="quick-grid">
-                <a href="notifications.php" class="grid-item">
-                    <div class="grid-icon"><i class="fa fa-bell"></i></div>
-                    <span>Notifications</span>
+                <a href="add-fund.php" class="grid-item">
+                    <div class="grid-icon"><i class="fa fa-money"></i></div>
+                    <span>Add Fund</span>
                 </a>
                 <a href="withdraw.php" class="grid-item">
                     <div class="grid-icon"><i class="fa fa-bank"></i></div>
@@ -225,6 +234,19 @@ if (empty($lat) || empty($lon)) {
                     <div class="grid-icon"><i class="fa fa-download"></i></div>
                     <span>App</span>
                 </a>
+            </div>
+
+            <!-- Starline Premium Banner (Restored) -->
+            <div class="starline-banner-premium">
+                <div class="starline-content">
+                    <div class="starline-head">
+                        <h4>MUMBAI STARLINE</h4>
+                        <p>Play every hour and win big with Mumbai's most trusted market.</p>
+                    </div>
+                    <a href="starline-play.php" class="btn-starline-play">
+                        <i class="fa fa-play"></i> Play Starline
+                    </a>
+                </div>
             </div>
 
 
@@ -379,7 +401,6 @@ if (empty($lat) || empty($lon)) {
 	<?php } ?>
 						
     
-    <?php include("include/bottom-nav.php"); ?>
     <?php include("include/footer.php"); ?>
 	<?php if(0){?>
 <!--Start of Tawk.to Script-->

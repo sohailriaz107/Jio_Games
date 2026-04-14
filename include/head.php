@@ -27,7 +27,7 @@
   });
 </script>
 <?php } ?>
-<link rel="stylesheet" href="assets/css/style.css?v=2.2">
+<link rel="stylesheet" href="assets/css/style.css?v=2.4">
 <style>
 /* New Premium Design Tokens */
 :root {

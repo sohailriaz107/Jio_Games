@@ -40,28 +40,7 @@
     color: var(--primary-blue);
 }
 
-/* Specific styling for a center action button if needed */
-.bottom-nav-item.center-action {
-    position: relative;
-    top: -15px;
-}
 
-.bottom-nav-item.center-action .icon-circle {
-    width: 50px;
-    height: 50px;
-    background: var(--primary-gradient);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #fff;
-    box-shadow: 0 8px 20px rgba(0,68,187,0.3);
-}
-
-.bottom-nav-item.center-action i {
-    margin-bottom: 0;
-    font-size: 22px;
-}
 </style>
 
 <div class="bottom-nav">
@@ -69,17 +48,17 @@
         <i class="fa fa-home"></i>
         <span>Home</span>
     </a>
-    <a href="add-fund.php" class="bottom-nav-item <?php echo (basename($_SERVER['PHP_SELF']) == 'add-fund.php') ? 'active' : ''; ?>">
-        <i class="fa fa-plus-circle"></i>
-        <span>Fund</span>
+    <a href="notifications.php" class="bottom-nav-item <?php echo (basename($_SERVER['PHP_SELF']) == 'notifications.php') ? 'active' : ''; ?>">
+        <i class="fa fa-bell"></i>
+        <span>Notifications</span>
     </a>
     <a href="bidding-history.php" class="bottom-nav-item <?php echo (basename($_SERVER['PHP_SELF']) == 'bidding-history.php' || basename($_SERVER['PHP_SELF']) == 'bidding-history-starline.php') ? 'active' : ''; ?>">
         <i class="fa fa-history"></i>
         <span>Bids</span>
     </a>
     <a href="my-profile.php" class="bottom-nav-item <?php echo (basename($_SERVER['PHP_SELF']) == 'my-profile.php') ? 'active' : ''; ?>">
-        <i class="fa fa-user"></i>
-        <span>Account</span>
+        <i class="fa fa-user-circle"></i>
+        <span>Profile</span>
     </a>
 </div>
 

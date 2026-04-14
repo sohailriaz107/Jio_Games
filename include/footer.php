@@ -3,7 +3,7 @@
 <?php if(0){?>
 <div class="overlay"></div>
 <div id="loading-bg"></div>
-<div id="mloader" class="lds-ripple"><div></div><div></div></div>
+<!-- <div id="mloader" class="lds-ripple"><div></div><div></div></div> -->
 <?php } ?>
 
 <!-- ===== NEW BOTTOM NAV BAR ===== -->
@@ -15,22 +15,22 @@ $current_page = basename($_SERVER['PHP_SELF']);
         <i class="fa fa-home"></i>
         <span>Home</span>
     </a>
-    <a href="add-fund.php" class="bnav-item <?php echo ($current_page == 'add-fund.php') ? 'active' : ''; ?>">
-        <i class="fa fa-plus-circle"></i>
-        <span>Fund</span>
+    <a href="notifications.php" class="bnav-item <?php echo ($current_page == 'notifications.php') ? 'active' : ''; ?>">
+        <i class="fa fa-envelope-o"></i>
+        <span>Notifications</span>
     </a>
-    <a href="starline-play.php" class="bnav-item bnav-center">
+    <!-- <a href="starline-play.php" class="bnav-item bnav-center">
         <div class="bnav-fab">
             <i class="fa fa-play"></i>
         </div>
         <span>Play</span>
-    </a>
+    </a> -->
     <a href="my-history.php" class="bnav-item <?php echo ($current_page == 'my-history.php') ? 'active' : ''; ?>">
-        <i class="fa fa-list-alt"></i>
+        <i class="fa fa-history"></i>
         <span>History</span>
     </a>
     <a href="my-profile.php" class="bnav-item <?php echo ($current_page == 'my-profile.php' || $current_page == 'update-bank-details.php' || $current_page == 'change-password.php') ? 'active' : ''; ?>">
-        <i class="fa fa-user-circle"></i>
+        <i class="fa fa-user"></i>
         <span>Profile</span>
     </a>
 </nav>

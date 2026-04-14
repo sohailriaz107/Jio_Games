@@ -56,8 +56,7 @@ $res_withdrawn = $stmt_withdrawn->get_result();
 $withdrawn_row = $res_withdrawn->fetch_assoc();
 $withdrawnAmount = $withdrawn_row['withdrawn_amount'] ?? 0;
 
-$netWinningBalance = $winningAmount - $withdrawnAmount;
-if($netWinningBalance < 0) $netWinningBalance = 0;
+$netWinningBalance = $current_balance;
 
 // Handle Withdrawal Request
 if (isset($_POST['withdraw'])) {
@@ -65,8 +64,8 @@ if (isset($_POST['withdraw'])) {
     $date = date('Y-m-d');
     $time = date('h:i:s A');
 
-    if ($netWinningBalance <= 0) {
-        echo "<script>alert('You do not have any Winning Amount. You can only withdraw Winning Amount.'); window.location = 'withdraw.php?invalidrequest';</script>";
+    if ($current_balance <= 0) {
+        echo "<script>alert('You do not have sufficient balance in your wallet.'); window.location = 'withdraw.php?invalidrequest';</script>";
         exit;
     }
     
@@ -74,8 +73,6 @@ if (isset($_POST['withdraw'])) {
         echo "<script>window.location = 'withdraw.php?insufficientbalance';</script>";
     } elseif ($amount < 1000) {
         echo "<script>alert('Minimum withdrawal amount is 1000'); window.location = 'withdraw.php?invalidrequest';</script>";
-    } elseif ($amount > $netWinningBalance) {
-        echo "<script>alert('Amount exceeds your Winning Balance'); window.location = 'withdraw.php?invalidrequest';</script>";
     } else {
         $new_balance = $current_balance - $amount;
         UpdateBalanceInUserTable($user_id, $new_balance);
@@ -117,8 +114,8 @@ if (isset($_POST['withdraw'])) {
             <div class="premium-hero-banner">
                 <div class="wallet-display">
                     <p class="greeting">Available for Withdrawal</p>
-                    <h2 class="brand-text"><i class="fa fa-inr"></i> <?php echo number_format($netWinningBalance, 2); ?></h2>
-                    <small style="opacity: 0.8;">Winning Balance Only</small>
+                    <h2 class="brand-text"><i class="fa fa-inr"></i> <?php echo number_format($current_balance, 2); ?></h2>
+                    <small style="opacity: 0.8;">Wallet Balance</small>
                 </div>
             </div>
 

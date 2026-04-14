@@ -32,19 +32,19 @@ session_start();
             <div class="tb-10">
                 
                 <div class="premium-game-card" style="width: 100%; padding: 15px; margin-bottom: 20px;">
-                     <a href="fund-history.php" class="mplist" style="text-decoration:none; color:#2d3748; font-weight:600; display:flex; align-items:center; width:100%;"><i class="fa fa-money" style="margin-right:15px; color:var(--primary-light); font-size:22px;"></i> Fund History</a>
+                     <a href="fund-history.php" class="mplist" style="text-decoration:none; color:#2d3748; font-weight:600; display:flex; align-items:center; width:100%;"><i class="fa fa-credit-card" style="margin-right:15px; color:var(--primary-light); font-size:22px;"></i> Fund History</a>
                 </div>
 
                 <div class="premium-game-card" style="width: 100%; padding: 15px; margin-bottom: 20px;">
-                     <a href="bidding-history.php" class="mplist" style="text-decoration:none; color:#2d3748; font-weight:600; display:flex; align-items:center; width:100%;"><i class="fa fa-list-alt" style="margin-right:15px; color:var(--primary-light); font-size:22px;"></i> Main Bidding History</a>
+                     <a href="bidding-history.php" class="mplist" style="text-decoration:none; color:#2d3748; font-weight:600; display:flex; align-items:center; width:100%;"><i class="fa fa-cubes" style="margin-right:15px; color:var(--primary-light); font-size:22px;"></i> Main Bidding History</a>
                 </div>
                 
                 <div class="premium-game-card" style="width: 100%; padding: 15px; margin-bottom: 20px;">
-                    <a href="bidding-history-starline.php" class="mplist" style="text-decoration:none; color:#2d3748; font-weight:600; display:flex; align-items:center; width:100%;"><i class="fa fa-list" style="margin-right:15px; color:var(--primary-light); font-size:22px;"></i> Starline Bidding History</a>
+                    <a href="bidding-history-starline.php" class="mplist" style="text-decoration:none; color:#2d3748; font-weight:600; display:flex; align-items:center; width:100%;"><i class="fa fa-star" style="margin-right:15px; color:var(--primary-light); font-size:22px;"></i> Starline Bidding History</a>
                 </div>
                 
                 <div class="premium-game-card" style="width: 100%; padding: 15px; margin-bottom: 20px;">
-                    <a href="transaction-history.php" class="mplist" style="text-decoration:none; color:#2d3748; font-weight:600; display:flex; align-items:center; width:100%;"><i class="fa fa-exchange" style="margin-right:15px; color:var(--primary-light); font-size:22px;"></i> Transaction History</a>
+                    <a href="transaction-history.php" class="mplist" style="text-decoration:none; color:#2d3748; font-weight:600; display:flex; align-items:center; width:100%;"><i class="fa fa-file-text" style="margin-right:15px; color:var(--primary-light); font-size:22px;"></i> Transaction History</a>
                 </div>
 
                         
