@@ -256,7 +256,7 @@ if (isset($_POST['single_submit']) && isset($_SESSION['usr_id']) && $_SESSION['u
                 }
                 const digit = this.getAttribute('data-digit');
                 const input = document.getElementById('double_patti' + digit);
-                input.value = (input.value === amt) ? "" : amt; // Toggle
+                input.value = (parseInt(input.value) || 0) + parseInt(amt);
                 calculateTotal();
             });
         });

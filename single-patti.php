@@ -263,7 +263,7 @@ if($child_game_id =='' || $parent_game_id =='' || $default_game ==''){
                 }
                 const digit = this.getAttribute('data-digit');
                 const input = document.getElementById('single_patti' + digit);
-                input.value = (input.value === amt) ? "" : amt; // Toggle
+                input.value = (parseInt(input.value) || 0) + parseInt(amt);
                 calculateTotal();
             });
         });
