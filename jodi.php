@@ -94,7 +94,7 @@ if($child_game_id =='' || $parent_game_id =='' || $default_game ==''){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>Jodi Bidding - Jio Games</title>
+    <title>Jodi Bidding - RATAN777</title>
     
     <?php include("include/head.php"); ?>
     <style>

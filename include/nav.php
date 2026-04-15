@@ -4,7 +4,7 @@
         <!-- Left: App Brand -->
         <div class="d-flex align-items-center" style="z-index: 2;">
             <a href="<?php echo defined('SITEURL') ? SITEURL : 'index.php'; ?>" class="app-brand" style="color: white; font-weight: 700; font-size: 21px; text-decoration: none; letter-spacing: 0.5px;">
-                Jio Games
+                RATAN777
             </a>
         </div>
         

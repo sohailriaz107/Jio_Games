@@ -1,5 +1,5 @@
 <?php
-$site_title = 'Jio games';
+$site_title = 'RATAN777';
 $home_url = 'https://matkaresul.com/asim_work/';    //url of home page
 $site_url = 'https://matkaresul.com/asim_work/admin/'; //backend url
 $admin_folder_name = 'admin';

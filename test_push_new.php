@@ -22,7 +22,7 @@ exit;
 
 date_default_timezone_set('Asia/Kolkata'); 
 // Load the service account key file
-$serviceAccountPath = '/home/Jio games/public_html/include/paytm-matka-firebase-adminsdk-jagch-b57b29b03d.json'; // Update this path
+$serviceAccountPath = '/home/RATAN777/public_html/include/paytm-matka-firebase-adminsdk-jagch-b57b29b03d.json'; // Update this path
 $serviceAccount = json_decode(file_get_contents($serviceAccountPath), true);
 
 // Set the required values

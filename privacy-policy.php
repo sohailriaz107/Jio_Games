@@ -31,7 +31,7 @@ session_start();
                 
                 <div class=" tb-10">
                     <h3>Privacy Policy</h3>
-                    <p>Welcome to Jio games! We value your privacy and are committed to protecting your personal information. This Privacy Policy outlines how we collect, use, and safeguard your information when you use our website.</p>
+                    <p>Welcome to RATAN777! We value your privacy and are committed to protecting your personal information. This Privacy Policy outlines how we collect, use, and safeguard your information when you use our website.</p>
 
                     <h4>Information We Collect</h4>
                     <ul>

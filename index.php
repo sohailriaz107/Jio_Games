@@ -14,9 +14,9 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-<title> Jio games | ONLINE MATKA PLAY APP	</title>
-<meta name="title" content="Jio games | PLAY ONLINE MATKA | SATTA MATKA PLAY">
-<meta name="description" content="Jio games App Experience with new Online Matka Play App website and Jio games in Satta Matka Play online matka Industry 2024 with Jio games.">
+<title> RATAN777 | ONLINE MATKA PLAY APP	</title>
+<meta name="title" content="RATAN777 | PLAY ONLINE MATKA | SATTA MATKA PLAY">
+<meta name="description" content="RATAN777 App Experience with new Online Matka Play App website and RATAN777 in Satta Matka Play online matka Industry 2024 with RATAN777.">
 <link rel="canonical" href="https://jiogames.app" />
 <?php include("include/head.php"); ?>
 </head>
@@ -334,12 +334,12 @@ if (empty($lat) || empty($lon)) {
             <div style="height: 10px;"></div>
             <?php if(0){?>
             <div class="container hometext">
-			<h1 style="font-size:14px;font-weight: 300;">Jio games: ONLINE MATKA PLAY</h1>
-			<p>Jio games App Experience with new online Matka Play website and matkabooking in Satta Matka Play online matka Industry 2023. We provide the best online matka satta play experience , 500 deposit full rate real time support.</p>
+			<h1 style="font-size:14px;font-weight: 300;">RATAN777: ONLINE MATKA PLAY</h1>
+			<p>RATAN777 App Experience with new online Matka Play website and matkabooking in Satta Matka Play online matka Industry 2023. We provide the best online matka satta play experience , 500 deposit full rate real time support.</p>
 			
 			
 			<h2 style="font-size:12px;font-weight: 300;">India's No1 Most Trusted Online Matka Play Site</h2>
-            <p >Welcome to Jio games, your premier destination for online matka play. As the domain name suggests, Jio games offers a seamless platform for enthusiasts to indulge in the thrill of satta matka. Our commitment to a secure and swift gaming experience sets us apart—we ensure a minimum deposit of 500, instant withdrawals, and 24/7 customer support for any queries. With a reputation for being the top online matka play website, we take pride in delivering full rates and, above all, guaranteeing the safety of our users' money. Join us for an unparalleled journey into the world of matka, where excitement meets reliability.</p>
+            <p >Welcome to RATAN777, your premier destination for online matka play. As the domain name suggests, RATAN777 offers a seamless platform for enthusiasts to indulge in the thrill of satta matka. Our commitment to a secure and swift gaming experience sets us apart—we ensure a minimum deposit of 500, instant withdrawals, and 24/7 customer support for any queries. With a reputation for being the top online matka play website, we take pride in delivering full rates and, above all, guaranteeing the safety of our users' money. Join us for an unparalleled journey into the world of matka, where excitement meets reliability.</p>
 			
 			
 			
@@ -382,7 +382,7 @@ if (empty($lat) || empty($lon)) {
           <!-- Modal body -->
           <div class="modal-body" style="padding: 30px 20px; text-align: center;">
             <div style="display: flex; flex-direction: column; align-items: center; gap: 15px;">
-                <img src="assets/img/app-home.webp" style="width: 120px; height: auto; border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.15);">
+                <img src="assets/img/app_page.jpeg" style="width: 120px; height: auto; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.2); border: 4px solid #333;">
                 <div style="width: 100%;">
                     <p style="font-size: 22px; font-weight: 900; color: #0044bb; margin-bottom: 8px; letter-spacing: 0.5px;">DOWNLOAD OUR APP</p>
                     <p style="line-height: 1.6; font-size: 14px; color: #555; margin-bottom: 25px; padding: 0 10px;">Enjoy advanced features and options by downloading our Android app. Access all the exciting features anytime, anywhere!</p>

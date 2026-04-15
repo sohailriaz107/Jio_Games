@@ -75,7 +75,7 @@ if (isset($_POST['single_submit']) && isset($_SESSION['usr_id']) && $_SESSION['u
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>Full Sangam - Jio Games</title>
+    <title>Full Sangam - RATAN777</title>
     
     <?php include("include/head.php"); ?>
     <style>

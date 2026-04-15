@@ -29,7 +29,7 @@ session_start();
             <div class="container" >  
             <div class="card tbmr-40">
                 
-                <img src="assets/img/logo-fill.png" style="min-height: 100px;height: 100px;margin: auto;margin-bottom: auto;border-radius: 10px;margin-bottom: 10px;" >
+                <img src="assets/img/ic_launcher-playstore.png" style="min-height: 100px;height: 100px;margin: auto;margin-bottom: auto;border-radius: 10px;margin-bottom: 10px;" >
                 
                 <div class="text-center tb-10">
                     <h3>404</h3>

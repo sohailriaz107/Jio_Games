@@ -13,7 +13,7 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>Game Rates - Jio Games</title>
+    <title>Game Rates - RATAN777</title>
     
     <?php include("include/head.php"); ?>
     <style>

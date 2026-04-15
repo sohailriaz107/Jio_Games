@@ -116,7 +116,7 @@ if(isset($_POST['login'])){
             <div class="container" >  
             <div class="premium-auth-card">
                 
-                <center><img src="assets/img/logo-fill.png" style="min-height: 100px;height: 100px;margin: auto;margin-bottom: auto;border-radius: 10px;margin-bottom: 10px;" ></center>
+                <center><img src="assets/img/ic_launcher-playstore.png" style="min-height: 100px;height: 100px;margin: auto;margin-bottom: auto;border-radius: 10px;margin-bottom: 10px;" ></center>
                 
                 <div class="text-center tb-10">
                     <h3>Welcome</h3>

@@ -64,7 +64,7 @@ if (!isset($_SESSION['usr_id']) || !isset($_SESSION['usr_name']) || !isset($_SES
                 <div class="wallet-display text-center">
                     <i class="fa fa-trophy mb-2" style="font-size: 40px; color: #FFD700; text-shadow: 0 2px 4px rgba(0,0,0,0.2);"></i>
                     <h2 class="brand-text">Top Winners Today</h2>
-                    <p class="greeting">Celebrated Champions of Jio Games</p>
+                    <p class="greeting">Celebrated Champions of RATAN777</p>
                 </div>
             </div>
 

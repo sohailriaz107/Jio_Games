@@ -33,7 +33,7 @@ session_start();
                   <div class="row">
                     <div class="col-12"> 
                       <div style="display: flex; align-items: center;">
-									<img src="assets/img/app-home.webp" style="width: 150px; height: auto; margin-right: 20px;">
+									<img src="assets/img/app_page.jpeg" style="width: 150px; height: auto; margin-right: 20px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.2); border: 4px solid #333;">
 									<div>
 										<p style="font-size: 18px; font-weight: bold; margin-bottom: 5px;">DOWNLOAD OUR APP</p>
 										<p>Add Fund Issue is Fixed on our Android Application. Downlaod and Enjoy.</p>

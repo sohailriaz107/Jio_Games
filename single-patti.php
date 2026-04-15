@@ -84,7 +84,7 @@ if($child_game_id =='' || $parent_game_id =='' || $default_game ==''){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>Single Patti - Jio Games</title>
+    <title>Single Patti - RATAN777</title>
     
     <?php include("include/head.php"); ?>
     <style>
