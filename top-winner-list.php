@@ -33,19 +33,16 @@ if (!isset($_SESSION['usr_id']) || !isset($_SESSION['usr_name']) || !isset($_SES
     <?php include("include/head.php"); ?>
     <style>
         .winner-rank {
-            position: absolute;
-            top: -10px;
-            right: 15px;
-            width: 30px;
-            height: 30px;
+            width: 28px;
+            height: 28px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 700;
             color: white;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            z-index: 5;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            font-size: 13px;
         }
         .rank-1 { background: linear-gradient(135deg, #FFD700, #DAA520); }
         .rank-2 { background: linear-gradient(135deg, #C0C0C0, #A9A9A9); }
@@ -86,12 +83,11 @@ if (!isset($_SESSION['usr_id']) || !isset($_SESSION['usr_name']) || !isset($_SES
                         $rankClass = ($ranking <= 3) ? "rank-".$ranking : "rank-n";
                 ?>
                     <div class="premium-history-card position-relative" style="margin-bottom: 25px;">
-                        <div class="winner-rank <?php echo $rankClass; ?>">
-                            <?php echo $ranking; ?>
-                        </div>
-                        
                         <div class="history-card-header">
                             <span class="game-name"><?php echo $masked_username;?></span>
+                            <div class="winner-rank <?php echo $rankClass; ?>">
+                                <?php echo $ranking; ?>
+                            </div>
                             <span class="type-badge" style="background: #e6ffed; color: #1e7e34;">WON</span>
                         </div>
                         
@@ -117,7 +113,7 @@ if (!isset($_SESSION['usr_id']) || !isset($_SESSION['usr_name']) || !isset($_SES
                                 <div class="detail-item">
                                     <i class="fa fa-clock-o"></i>
                                     <span class="label">Time:</span>
-                                    <span style="font-size: 11px;"><?php echo date('h:i A', strtotime($row['time']));?></span>
+                                    <span style="font-size: 11px;"><?php echo date('h:i A', strtotime($row['time']));?> | <?php echo date('d-m-Y', strtotime($row['date']));?></span>
                                 </div>
                             </div>
                         </div>
